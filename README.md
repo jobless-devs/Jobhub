@@ -41,6 +41,6 @@ In-depth documentation will accompany the project, ensuring that even those with
 
 ... and countless other possibilities!
 
-For a sneak peek into our architectural vision, check out the preliminary diagram below. Latest design: [here](https://miro.com/app/board/uXjVNX2YT9k=/?share_link_id=732210735449). 
+For a sneak peek into our architectural vision, check out the preliminary diagram below. Or [here](https://miro.com/app/board/uXjVNX2YT9k=/?share_link_id=732210735449). 
 
-<img width="555" alt="SCR-20231022-bdvj" src="https://github.com/sbshaun/JobHub/assets/99154887/0066924b-0246-4206-8a9b-5ccdf177434d">
+<img width="777" alt="JobHub-Architecture-Diagram" src="https://github.com/sbshaun/JobHub/assets/99154887/5de417cc-d087-41e0-9df4-b73d22a52128">
