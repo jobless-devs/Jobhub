@@ -2,8 +2,6 @@
 
 # 👉 The 🚫ther “Hub” you'll visit daily! 🙊 
 
-- Quick Start 👉 [readme.md](docs/)
-
 ### Inspiration
 The co-op job search can be daunting. Think about how often you input keywords like:
 When you are in the co-op job search process. You'll search for 
@@ -46,3 +44,5 @@ In-depth documentation will accompany the project, ensuring that even those with
 For a sneak peek into our architectural vision, check out the preliminary diagram below. Or [here](https://miro.com/app/board/uXjVNX2YT9k=/?share_link_id=732210735449). 
 
 <img width="777" alt="JobHub-Architecture-Diagram" src="https://github.com/sbshaun/JobHub/assets/99154887/5de417cc-d087-41e0-9df4-b73d22a52128">
+
+# Quick Start 👉 [readme.md](docs/README.md) 
