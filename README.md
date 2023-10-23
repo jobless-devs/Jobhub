@@ -2,6 +2,8 @@
 
 # 👉 The 🚫ther “Hub” you'll visit daily! 🙊 
 
+- Quick Start 👉 [readme.md](docs/)
+
 ### Inspiration
 The co-op job search can be daunting. Think about how often you input keywords like:
 When you are in the co-op job search process. You'll search for 
