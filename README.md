@@ -1,6 +1,6 @@
 <img width="333" alt="jobhub" src="https://github.com/sbshaun/JobHub/assets/99154887/3810ab61-3a9f-44d0-b40b-798c1167be24">
 
-## We will get you all the jobs you ever wanted to find~ 
+# 👉 The 🚫ther “Hub” you'll visit daily! 🙊 
 
 ### Inspiration
 The co-op job search can be daunting. Think about how often you input keywords like:
