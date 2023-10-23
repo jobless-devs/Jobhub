@@ -1,9 +1,5 @@
 # 📚 JobHub Documentation Hub 
-- Where clarity meets depth. 
-
--------
-
-## 🌟 Quick Start 👉 [Roadmap.md](roadmap.md)
+\- Where clarity meets depth. 
 
 ## 🌟 Overview
 The journey of building and scaling a project like JobHub is filled with decisions, challenges, and milestones. The `docs/` folder is our sanctuary for comprehensive documentation, ensuring that every aspect of our project is well-documented and accessible.
@@ -27,3 +23,4 @@ From architectural decisions to folder structures, from API endpoints to fronten
 ## 🤝 Join Us!
 Our mission goes beyond just building a platform; it's about building a community. A community where knowledge is shared, challenges are tackled collectively, and success is celebrated together. Your insights and contributions can make our documentation richer. Let's collaborate and make JobHubSFU's documentation a gold standard!
 
+# 🌟 Quick Start 👉 [Roadmap.md](roadmap.md)
