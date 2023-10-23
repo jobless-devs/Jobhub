@@ -2,7 +2,6 @@
 
 This guide outlines the folder structure of our project, explaining the purpose behind each folder and the decisions made.
 
-
 ### .github/
 For GitHub configurations, mainly GitHub Actions for tasks like CI/CD.
 
@@ -80,7 +79,7 @@ The `client` directory is dedicated to all frontend-related code. By isolating f
 Our project leverages AWS RDS for database solutions. The `database` directory is pivotal in this context, containing all database-related scripts, migrations, and seed data. This organization ensures that any changes or additions to the database structure are easily traceable and manageable.
 
 ### docs/
-Documentation is the backbone of any project, ensuring that developers, both current and future, understand the project's architecture, decisions, and workflows. The `docs` directory is a dedicated space for all project-related documentation, from setup guides to architectural decisions.
+Documentation is the backbone of any project, ensuring that developers, both current and future, understand the project's architecture, decisions, and workflows. The `docs` directory is a dedicated space for all project-related documentation, from setup guides to architectural decisions. Additionally, the `docs` directory contains subdirectories mirroring the main project structure, which will house detailed `.md` documents related to each specific component.
 
 ### events/
 Event-driven architectures are becoming increasingly popular, especially with the rise of serverless computing. Our `events` directory is tailored for configurations or scripts related to AWS CloudWatch Events or any other event-driven mechanisms we might adopt. This separation ensures that event-related logic doesn't clutter the main application code.
@@ -105,6 +104,9 @@ The `.gitignore` file is a crucial component of any Git-based project. It ensure
 
 ### LICENSE
 Open-source or not, every project should clearly define its licensing terms. The `LICENSE` file provides this clarity, dictating how the project can be used, modified, and distributed.
+
+### .gitkeep
+While Git does not track empty directories, sometimes it's essential to commit them to maintain a desired project structure. The `.gitkeep` file, though not a standard Git feature, is a convention used to commit an otherwise empty directory. It's a placeholder file that can be added to any directory to ensure Git tracks it.
 
 ### README.md
 The `README.md` file is often the first point of contact for anyone encountering the repository. It serves as an introduction, providing an overview of the project, setup instructions, and other crucial information.
