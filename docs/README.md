@@ -1,6 +1,9 @@
 # 📚 JobHub Documentation Hub 
+- Where clarity meets depth. 
 
-**- Where clarity meets depth.**
+-------
+
+## 🌟 Quick Start 👉 [Roadmap.md](roadmap.md)
 
 ## 🌟 Overview
 The journey of building and scaling a project like JobHub is filled with decisions, challenges, and milestones. The `docs/` folder is our sanctuary for comprehensive documentation, ensuring that every aspect of our project is well-documented and accessible.
