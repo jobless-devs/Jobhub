@@ -1,5 +1,5 @@
 # Project Structure Guide 
-`Concise Version`
+`- Concise Version`
 
 This guide outlines the folder structure of our project, explaining the purpose behind each folder and the decisions made.
 
