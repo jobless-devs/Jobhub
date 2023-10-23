@@ -1,6 +1,14 @@
 # 🌐 System Architecture Overview 🌐
 `- Concise Version`
 
+---
+
+### 📌 TODO: add more details in the [Comprehensive Version](https://github.com/sbshaun/JobHub/blob/main/docs/docs/architecture-design.md#-system-architecture-overview--1) 
+- add explanations to concepts 
+- add links to readings/youtube tutorials
+
+---
+
 <img width="777" alt="JobHub-Architecture-Diagram" src="https://github.com/sbshaun/JobHub/assets/99154887/5de417cc-d087-41e0-9df4-b73d22a52128">
 
 ### 🛠️ Key Technical Terms/Techs 🛠️:
