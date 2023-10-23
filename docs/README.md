@@ -23,4 +23,4 @@ From architectural decisions to folder structures, from API endpoints to fronten
 ## 🤝 Join Us!
 Our mission goes beyond just building a platform; it's about building a community. A community where knowledge is shared, challenges are tackled collectively, and success is celebrated together. Your insights and contributions can make our documentation richer. Let's collaborate and make JobHubSFU's documentation a gold standard!
 
-# 🌟 Quick Start 👉 [Roadmap.md](docs/roadmap.md)
+# 🌟 Next Step 👉 [Roadmap.md](docs/roadmap.md)
