@@ -1,4 +1,4 @@
-<img width="333" alt="jobhub" src="https://github.com/sbshaun/JobHub/assets/99154887/3810ab61-3a9f-44d0-b40b-798c1167be24">
+<img width="222" alt="jobhub" src="https://github.com/sbshaun/JobHub/assets/99154887/b4c2ddcc-6101-4a93-a039-dd9e49844f68">
 
 # 👉 The 🚫ther “Hub” you'll visit daily! 🙊🌟
 
