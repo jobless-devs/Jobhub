@@ -5,8 +5,9 @@ Welcome to the roadmap of JobHub. This guide is designed to provide a sequential
 ## 🌱 Getting Started
 
 1. [Folder Structure](folder-structure.md) - 📂 - Make sure you know where to find what. 
-2. [Architecture Design](architecture-design.md) - 🏛 - Blueprint of our system 
-3. TODO: [Tech Stack Decision](tech-stack-decision.md) - 🛠 - Rationale behind our choice of technologies and how they fit together.
+2. [Architecture Design](architecture-design.md) - 🏛 - Blueprint of our system
+3. [Jira](jira.md) - 🎯 - Project management hub 
+4. TODO: [Tech Stack Decision](tech-stack-decision.md) - 🛠 - Rationale behind our choice of technologies and how they fit together.
 
 ## 🚀 Diving Deeper
 
