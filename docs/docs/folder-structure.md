@@ -124,3 +124,5 @@ The `README.md` file is often the first point of contact for anyone encountering
 - **Frontend & Backend Separation**: A clear separation between frontend (`client`) and backend (`server` and `lambdas`) components ensures modularity. This separation not only makes the
 
 In conclusion, our chosen structure is a testament to our commitment to clarity, organization, and scalability, ensuring that the project remains robust and maintainable as it grows. 
+
+# 🌟[Next Step](https://github.com/sbshaun/JobHub/blob/main/docs/docs/roadmap.md#-getting-started)🌟 
