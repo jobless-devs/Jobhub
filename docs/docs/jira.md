@@ -1,8 +1,21 @@
 # 📌 **Jira Workflow Documentation**
 - A concise guide to our Jira setup and integration with ChatGPT. 🤖
 
-# 🚀 **Overview**
-This document outlines the method and steps taken to set up our Jira project management workflow, including the integration with ChatGPT for task breakdown and documentation.
+# 🌐 **Overview**
+This document outlines the method and steps taken to set up our Jira project management workflow, including the use of ChatGPT for task breakdown and documentation.
+
+## 🚀 Jira Overview
+Jira, developed by Atlassian, is a leading project management tool designed for agile software development teams. It offers features like issue tracking, custom workflows, and detailed reporting to streamline project processes and enhance collaboration.
+
+## 🔄 Jira Workflow
+A Jira workflow represents the sequence of steps that an issue goes through during its lifecycle, from creation to completion. It's a customizable pathway that defines how a team tackles tasks, ensuring clarity and consistency in the project's progression. 
+- e.g. `todo` -> `in progress` -> `done` 
+
+## 📚 Jira Terminologies
+- **Epic**: A large body of work that can be broken down into smaller tasks or stories.
+- **Task**: A single unit of work, representing a specific activity.
+- **Ticket (or Issue)**: A general term in Jira for any work item, be it a bug, task, story, or epic.
+- **Story**: Represents a user requirement, often used in agile methodologies to describe a feature from an end-user perspective.
 
 # 🔍 **Steps & Methodology**
 
