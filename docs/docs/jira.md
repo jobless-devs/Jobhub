@@ -58,6 +58,10 @@ The use of ChatGPT makes sure that our project is well-structured, organized, an
 `- Each task has several actionable tickets:`
 <img width="222" alt="SCR-20231024-sljd" src="https://github.com/sbshaun/JobHub/assets/99154887/a5fc6647-8137-418d-b19b-2cc64a444019">
 
+- `A peek into our blue print:`
+<img width="1111" alt="image" src="https://github.com/sbshaun/JobHub/assets/99154887/7eb38df4-6848-4fa5-bfd2-dc18ff2e7b75">
+
+
 # 🌟[Next Step](https://github.com/sbshaun/JobHub/blob/main/docs/docs/roadmap.md#-getting-started)🌟  
 
 # 🔗 **ChatGPT Prompt Details** 
