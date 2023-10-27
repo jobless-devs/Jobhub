@@ -10,7 +10,9 @@ When you are in the co-op job search process. You'll search for
 - 🖥️ Software Developer Intern 
 - 🖥️ Software Developer Co-op 
 - 📊 Data Engineer Intern 
-- 📊 Data Engineer Co-op 
+- 📊 Data Engineer Co-op
+- 🤖 Machine Learning Engineer Intern
+- 🤖 Machine Learning Engineer Co-op 
 
 ...and so on. You diligently place these into platforms like Indeed, LinkedIn, Glassdoor, and more. Initially, enthusiasm 🚀 fuels your search, but after weeks without success, it can wear you down. 😞
 
