@@ -235,3 +235,6 @@
                 -   **Schedule Regular Backups** ⏰: Automate backups of databases and critical data.
                 -   **Test Recovery Procedures** 🔍: Periodically test disaster recovery procedures to ensure data can be restored.
                 -   **Maintain Redundancy** 🔗: If possible, maintain redundant systems or data centers to ensure high availability. 
+
+
+# 🌟Next Step -> [jira.md](jira.md)🌟 
