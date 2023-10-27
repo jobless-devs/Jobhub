@@ -2,6 +2,8 @@
 
 # 👉 The 🚫ther “hub” you'll visit daily! 🙊🌟
 
+> Latest update: [https://docs.google.com/document/d/1iAg287oxtnhR0tiD2PpY4js-MbZfZNoQ6-4iXsIimcE/edit](https://docs.google.com/document/d/1iAg287oxtnhR0tiD2PpY4js-MbZfZNoQ6-4iXsIimcE/edit) 
+
 ### 💡 Inspiration
 The co-op job search can be daunting. 🤔 Think about how often you input keywords like:
 When you are in the co-op job search process. You'll search for 
