@@ -237,4 +237,4 @@
                 -   **Maintain Redundancy** 🔗: If possible, maintain redundant systems or data centers to ensure high availability. 
 
 
-# 🌟Next Step -> [jira.md](jira.md)🌟 
+# 🌟 Next Step -> [jira.md]([jira.md](https://github.com/sbshaun/JobHub/blob/main/docs/docs/jira.md#a-peek-into-our-blue-print-is-blow-details-are-here---jira-detailsmd)https://github.com/sbshaun/JobHub/blob/main/docs/docs/jira.md#a-peek-into-our-blue-print-is-blow-details-are-here---jira-detailsmd) 🌟 
