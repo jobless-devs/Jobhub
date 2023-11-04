@@ -61,10 +61,11 @@ The use of ChatGPT makes sure that our project is well-structured, organized, an
 # A peek into our blue print is blow, details are here -> [jira-details.md](jira-details.md) 
 <img width="1111" alt="image" src="https://github.com/sbshaun/JobHub/assets/99154887/7eb38df4-6848-4fa5-bfd2-dc18ff2e7b75">
 
+# Take a look at our Jira workflow: [jira-workflow.md](jira-workflow.md)
 
 # 🌟[Next Step](https://github.com/sbshaun/JobHub/blob/main/docs/docs/roadmap.md#-getting-started)🌟  
 
-# 🔗 **ChatGPT Prompt Details** 
+# 🔗 **ChatGPT Prompt Details (Optional)** 
 
 ## 1. <img width="555" alt="image" src="https://github.com/sbshaun/JobHub/assets/99154887/a16b4c84-5eb9-4206-8f1e-c35e007f2e82">
 
