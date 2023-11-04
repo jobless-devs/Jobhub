@@ -1,5 +1,6 @@
-> **Note**: This document is a preliminary draft. The final steps and details will be decided collaboratively by the team.
-> 
+> **Note**: This document is a preliminary draft. The final steps and details will be decided collaboratively by the team. <br>
+> Simply skim through to get an idea, and only read the details if interested. 
+
 # 1. **Requirements Gathering and Analysis** 💡
 -   **Description**: This phase involves understanding and documenting the specific requirements of the project. Since you are your own users, it's about aligning the team's vision, understanding individual perspectives, and consolidating them into a unified set of requirements.
 
