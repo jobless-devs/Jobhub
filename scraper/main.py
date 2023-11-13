@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from jobspy import scrape_jobs
+from src.jobspy import scrape_jobs
 from s3.s3_helpers import upload_to_s3  # Make sure to import your helper function
 
 # Get the directory in which the current script is located
@@ -14,7 +14,7 @@ jobs = scrape_jobs(
     site_name=["indeed", "linkedin", "zip_recruiter", "glassdoor"],
     search_term="Software Engineer",
     location="Vancouver, BC",
-    results_wanted=20,
+    results_wanted=30,
     country_indeed='Canada'  # only needed for indeed / glassdoor
 )
 print(f"Found {len(jobs)} jobs")

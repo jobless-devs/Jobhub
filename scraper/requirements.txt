@@ -1,2 +1,6 @@
+bs4
 boto3
-python-jobspy
+pandas
+requests
+pydantic
+tls_client
