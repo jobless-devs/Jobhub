@@ -25,3 +25,4 @@ Prerequisites:
   - Decorators: 
     - [https://www.youtube.com/watch?v=BE-L7xu8pO4](https://www.youtube.com/watch?v=BE-L7xu8pO4)
     - [https://www.youtube.com/watch?v=WpF6azYAxYg](https://www.youtube.com/watch?v=WpF6azYAxYg)
+- YAML: [The YAML file explained | YAML Tutorial](https://www.youtube.com/watch?v=fwLBfZFrLgI) 
