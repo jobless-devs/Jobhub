@@ -5,6 +5,31 @@ import requests
 import tls_client
 from ..jobs import JobType
 
+import functools
+import time
+
+def retry(exception_to_check, tries=5, delay=1, backoff=2, status_code=None):
+    """
+    Retry decorator with exponential backoff.
+    """
+    def deco_retry(func):
+        @functools.wraps(func)
+        def f_retry(*args, **kwargs):
+            mtries, mdelay = tries, delay
+            while mtries > 1:
+                try:
+                    return func(*args, **kwargs)
+                except exception_to_check as e:
+                    if status_code and str(e).endswith(str(status_code)):
+                        print(f"{str(e)}, Retrying in {mdelay} seconds...")
+                        time.sleep(mdelay)
+                        mtries -= 1
+                        mdelay *= backoff
+                    else:
+                        raise
+            return func(*args, **kwargs)
+        return f_retry  # true decorator
+    return deco_retry
 
 def count_urgent_words(description: str) -> int:
     """

@@ -1,3 +1,4 @@
+> Adapted from and credits to: [https://github.com/Bunsly/JobSpy](https://github.com/Bunsly/JobSpy) 
 Steps to run the project: 
 1. `cd path/to/jobhub/scraper`
 2. Create `.env` file 
@@ -20,3 +21,6 @@ Prerequisites:
 - docker-compose
 - Python 
   - __init__.py in a directory 
+  - Decorators: 
+    - [https://www.youtube.com/watch?v=BE-L7xu8pO4](https://www.youtube.com/watch?v=BE-L7xu8pO4)
+    - [https://www.youtube.com/watch?v=WpF6azYAxYg](https://www.youtube.com/watch?v=WpF6azYAxYg)

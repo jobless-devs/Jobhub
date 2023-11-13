@@ -31,38 +31,7 @@ from ...jobs import (
     JobType,
 )
 from .. import Scraper, ScraperInput, Site
-
-
-import time
-import functools
-
-def retry(exception_to_check, tries=5, delay=3, backoff=2):
-    """
-    Retry decorator with exponential backoff.
-    :param exception_to_check: the exception to check. may be a tuple of exceptions to check
-    :param tries: number of times to try (not retry) before giving up
-    :param delay: initial delay between retries in seconds
-    :param backoff: backoff multiplier e.g. value of 2 will double the delay each retry
-    """
-    def deco_retry(f):
-        @functools.wraps(f)
-        def f_retry(*args, **kwargs):
-            mtries, mdelay = tries, delay
-            while mtries > 1:
-                try:
-                    return f(*args, **kwargs)
-                except exception_to_check as e:
-                    if "bad response with status code: 429" in str(e):
-                        print(f"{str(e)}, Retrying in {mdelay} seconds...")
-                        time.sleep(mdelay)
-                        mtries -= 1
-                        mdelay *= backoff
-                    else:
-                        raise
-            return f(*args, **kwargs)
-        return f_retry  # true decorator
-    return deco_retry
-
+from ..utils import retry
 
 class IndeedScraper(Scraper):
     def __init__(self, proxy: str | None = None):
@@ -77,7 +46,7 @@ class IndeedScraper(Scraper):
         self.jobs_per_page = 15
         self.seen_urls = set()
 
-    @retry(IndeedException, tries=5, delay=3, backoff=2)
+    @retry(IndeedException, tries=5, delay=1, backoff=2, status_code=429)
     def scrape_page(
         self, scraper_input: ScraperInput, page: int
     ) -> tuple[list[JobPost], int]:
