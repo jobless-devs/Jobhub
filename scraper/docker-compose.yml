@@ -1,0 +1,9 @@
+version: '3.8' # Specifies the version of the Compose file format
+services: # Begins the section where defines the services
+  scraper: # This is the name of the service
+    build: . # The current directory is the build context, containing the Dockerfile
+    container_name: scraper-container # Sets a custom name for the container
+    volumes: # Starts the section to define volumes
+      - .:/app # Binds the current directory on the host to /app in the container
+    env_file: # Add this line to your service
+      - .env # This will use the .env file in the project directory
