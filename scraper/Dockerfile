@@ -16,5 +16,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Now copy the rest of the application's code
 COPY . .
 
-# Run main.py when the container launches 
-CMD ["python", "./main.py"] 
+# Copy the entrypoint script and make it executable
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Set the entrypoint script to be executed
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
