@@ -1,4 +1,5 @@
 > Adapted from and credits to: [https://github.com/Bunsly/JobSpy](https://github.com/Bunsly/JobSpy) 
+
 Steps to run the project: 
 1. `cd path/to/jobhub/scraper`
 2. Create `.env` file 
