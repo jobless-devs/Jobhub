@@ -8,7 +8,7 @@ from ..jobs import JobType
 import functools
 import time
 
-def retry(exception_to_check, tries=5, delay=1, backoff=2, status_code=None):
+def retry(exception_to_check, tries=3, delay=1, backoff=3, status_code=429):
     """
     Retry decorator with exponential backoff.
     """

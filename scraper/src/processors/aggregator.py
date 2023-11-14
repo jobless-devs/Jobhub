@@ -59,12 +59,12 @@ def aggregate_csv_files(source_dir: str, output_dir: str) -> str:
         print(f"Aggregated data saved to {output_file}")
         
         # Delete individual run files after successful aggregation
-        # for f in all_files:
-        #     try:
-        #         os.remove(f)
-        #         print(f"Deleted file: {f}")
-        #     except OSError as e:
-        #         print(f"Error deleting file {f}: {e.strerror}")
+        for f in all_files:
+            try:
+                os.remove(f)
+                print(f"Deleted file: {f}")
+            except OSError as e:
+                print(f"Error deleting file {f}: {e.strerror}")
         return output_file
     else:
         print("No data to write.")

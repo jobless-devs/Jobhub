@@ -3,6 +3,7 @@ from datetime import datetime
 from src.jobspy import scrape_jobs
 from s3.s3_helpers import upload_to_s3
 from src.processors.aggregator import aggregate_csv_files
+from src.config import SEARCH_TERMS, SCRAPER_SETTINGS
 
 def setup_data_directory(base_path: str, sub_path: str) -> str:
     data_dir = os.path.join(base_path, sub_path)
@@ -32,11 +33,11 @@ def main():
     individual_run_dir = setup_data_directory(current_dir, 'data/individual_run')
     aggregated_dir = setup_data_directory(current_dir, 'data/aggregated')
     
-    search_terms = ["Software Engineer Intern", "Software Engineer Co-op", "Software Developer Intern", "Software Developer Co-op"]  # Add more search terms as needed
-    site_names = ["indeed", "linkedin", "zip_recruiter", "glassdoor"]
-    location = "Vancouver, BC"
-    results_wanted = 10
-    country = 'Canada'
+    search_terms = SEARCH_TERMS 
+    site_names = SCRAPER_SETTINGS['site_names']
+    location = SCRAPER_SETTINGS['location']
+    results_wanted = SCRAPER_SETTINGS['results_wanted']
+    country = SCRAPER_SETTINGS['country_indeed'] # Indeed only 
     
     for term in search_terms:
         timestamp = datetime.now().strftime('%Y%m%dT%H%M%S')  # Compact timestamp
