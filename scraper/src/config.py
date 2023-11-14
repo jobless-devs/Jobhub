@@ -1,7 +1,7 @@
 # Search terms configuration
 SEARCH_TERMS = [
-    "Software Engineer Intern",
-    "Software Developer Intern",
+    "Software Engineer Intern", 
+    "Software Developer Intern", 
     "Data Engineer Intern", 
     "Data Engineer Coop", 
 ]
@@ -10,7 +10,7 @@ SEARCH_TERMS = [
 SCRAPER_SETTINGS = {
     "site_names": ["indeed", "linkedin", "zip_recruiter", "glassdoor"],
     "location": "",
-    "results_wanted": 100,
+    "results_wanted": 10,
     "country_indeed": "Canada",
     "hyperlinks": False,
     "proxy": None,

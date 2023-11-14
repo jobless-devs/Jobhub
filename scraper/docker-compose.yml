@@ -7,3 +7,5 @@ services: # Begins the section where defines the services
       - .:/app # Binds the current directory on the host to /app in the container
     env_file: # Add this line to your service
       - .env # This will use the .env file in the project directory
+    environment:
+      - TZ=America/Vancouver # set system timezone
