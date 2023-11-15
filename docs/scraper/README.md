@@ -44,4 +44,4 @@ Contributions welcome to enhance efficiency, add features, or improve documentat
 ### Conclusion
 The JobHub Scraper is a key tool for data collection, designed for efficiency, scalability, and reliability.
 
-# Next Reading if interested: [scraping_process.md](scraping_process.md)
+# Next reading if interested: [scraping_process.md](scraping_process.md)
