@@ -31,3 +31,5 @@ This document details the JobHub Scraper's process for scraping job listings and
 
 ## Conclusion
 The JobHub Scraper efficiently collects job listings and uploads them to AWS S3, following a structured, step-by-step process for reliability and scalability.
+
+# Next reading if interested: [potential_improvements.md](potential_improvements.md) 
