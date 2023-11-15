@@ -1,5 +1,5 @@
 # 📌 **Jira Workflow Documentation**
-- A concise guide to our Jira setup and integration with ChatGPT. 🤖
+- Ideally we should use Jira. But we are just busy with everything else and are not full-time all in this project. Thus Jira is just for having an idea of the standard process of doing things, and it's also for a high-level understanding of the SDLC stages. 
 
 # 🌐 **Overview**
 This document outlines the method and steps taken to set up our Jira project management workflow, including the use of ChatGPT for task breakdown and documentation.
