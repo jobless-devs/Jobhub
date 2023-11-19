@@ -10,7 +10,7 @@ SEARCH_TERMS = [
 SCRAPER_SETTINGS = {
     "site_names": ["indeed", "linkedin", "zip_recruiter", "glassdoor"],
     "location": "",
-    "results_wanted": 10,
+    "results_wanted": 100,
     "country_indeed": "Canada",
     "hyperlinks": False,
     "proxy": None,
