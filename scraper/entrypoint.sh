@@ -3,4 +3,4 @@
 python /app/main.py
 
 # Then keep the container running
-tail -f /dev/null
+# tail -f /dev/null
