@@ -92,7 +92,7 @@ class LinkedInScraper(Scraper):
                             continue
                         else:
                             raise LinkedInException(
-                                f"bad response status code: {e.response.status_code}"
+                                f"LinkedInException: bad response status code: {e.response.status_code}"
                             )
                     else:
                         raise

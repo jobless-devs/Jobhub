@@ -84,20 +84,23 @@ def scrape_jobs(
 
         try:
             scraped_data: JobResponse = scraper.scrape(scraper_input)
-        except (LinkedInException, IndeedException, ZipRecruiterException) as lie:
-            raise lie
+            return site.value, scraped_data
         except Exception as e:
-            if site == Site.LINKEDIN:
-                raise LinkedInException(str(e))
-            if site == Site.INDEED:
-                raise IndeedException(str(e))
-            if site == Site.ZIP_RECRUITER:
-                raise ZipRecruiterException(str(e))
-            if site == Site.GLASSDOOR:
-                raise GlassdoorException(str(e))
-            else:
-                raise e
-        return site.value, scraped_data
+            print(f"Skipping - Exception occurred while scraping {site.value}: {e}")
+            return site.value,  JobResponse(jobs=[])  # Return an empty JobResponse object
+        # except (LinkedInException, IndeedException, ZipRecruiterException) as lie:
+        #     raise lie
+        # except Exception as e:
+        #     if site == Site.LINKEDIN:
+        #         raise LinkedInException(str(e))
+        #     if site == Site.INDEED:
+        #         raise IndeedException(str(e))
+        #     if site == Site.ZIP_RECRUITER:
+        #         raise ZipRecruiterException(str(e))
+        #     if site == Site.GLASSDOOR:
+        #         raise GlassdoorException(str(e))
+        #     else:
+        #         raise e
 
     site_to_jobs_dict = {}
 

@@ -45,10 +45,7 @@ def main():
         csv_filename = f'jobs_{term_filename}_{timestamp}.csv'
         jobs_csv_path = os.path.join(individual_run_dir, csv_filename)
         
-        try: 
-            run_scraper(site_names, term, location, results_wanted, country, jobs_csv_path)
-        except Exception as e:
-            print(f"Error running scraper for '{term}': {e}")
+        run_scraper(site_names, term, location, results_wanted, country, jobs_csv_path)
     
     aggregated_file_path = aggregate_csv_files(individual_run_dir, aggregated_dir)
     

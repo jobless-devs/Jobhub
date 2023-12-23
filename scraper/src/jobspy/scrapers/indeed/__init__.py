@@ -32,7 +32,6 @@ from ...jobs import (
 )
 from .. import Scraper, ScraperInput, Site
 from ..utils import retry
-from ....config import RETRY_SETTINGS
 
 class IndeedScraper(Scraper):
     def __init__(self, proxy: str | None = None):
@@ -47,11 +46,7 @@ class IndeedScraper(Scraper):
         self.jobs_per_page = 15
         self.seen_urls = set()
 
-    @retry(IndeedException, 
-           tries=RETRY_SETTINGS['tries'], 
-           delay=RETRY_SETTINGS['delay'], 
-           backoff=RETRY_SETTINGS['backoff'], 
-           status_code=RETRY_SETTINGS['status_code'])
+    @retry(IndeedException)
     def scrape_page(
         self, scraper_input: ScraperInput, page: int
     ) -> tuple[list[JobPost], int]:

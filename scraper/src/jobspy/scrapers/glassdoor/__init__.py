@@ -63,7 +63,7 @@ class GlassdoorScraper(Scraper):
             )
             if response.status_code != 200:
                 raise GlassdoorException(
-                    f"bad response status code: {response.status_code}"
+                    f"GlassdoorException: bad response status code: {response.status_code}"
                 )
             res_json = response.json()[0]
             if "errors" in res_json:
@@ -194,7 +194,7 @@ class GlassdoorScraper(Scraper):
         response = session.get(url)
         if response.status_code != 200:
             raise GlassdoorException(
-                f"bad response status code: {response.status_code}"
+                f"GlassdoorException: bad response status code: {response.status_code}"
             )
         items = response.json()
         if not items:

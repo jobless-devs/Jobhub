@@ -8,7 +8,7 @@ from ..jobs import JobType
 import functools
 import time
 
-def retry(exception_to_check, tries=3, delay=1, backoff=3, status_code=429):
+def retry(exception_to_check, tries=2, delay=9, backoff=2, status_code=[429, 403]):
     """
     Retry decorator with exponential backoff.
     """
@@ -20,8 +20,8 @@ def retry(exception_to_check, tries=3, delay=1, backoff=3, status_code=429):
                 try:
                     return func(*args, **kwargs)
                 except exception_to_check as e:
-                    if status_code and str(e).endswith(str(status_code)):
-                        print(f"{str(e)}, Retrying in {mdelay} seconds...")
+                    if any(str(code) in str(e) for code in status_code):
+                        print(f"{str(e)}, Retrying in {mdelay} seconds...(attempt {tries - mtries + 1}/{tries})")
                         time.sleep(mdelay)
                         mtries -= 1
                         mdelay *= backoff

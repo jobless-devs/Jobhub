@@ -15,7 +15,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from .. import Scraper, ScraperInput, Site
 from ..exceptions import ZipRecruiterException
-from ..utils import count_urgent_words, extract_emails_from_text, create_session
+from ..utils import count_urgent_words, extract_emails_from_text, create_session, retry
 from ...jobs import JobPost, Compensation, Location, JobResponse, JobType, Country
 
 
@@ -31,6 +31,7 @@ class ZipRecruiterScraper(Scraper):
         self.jobs_per_page = 20
         self.seen_urls = set()
 
+    @retry(ZipRecruiterException)
     def find_jobs_in_page(
         self, scraper_input: ScraperInput, continue_token: str | None = None
     ) -> Tuple[list[JobPost], Optional[str]]:
@@ -53,7 +54,7 @@ class ZipRecruiterScraper(Scraper):
             )
             if response.status_code != 200:
                 raise ZipRecruiterException(
-                    f"bad response status code: {response.status_code}"
+                    f"ZipRecruiterException: bad response status code: {response.status_code}"
                 )
         except Exception as e:
             if "Proxy responded with non 200 code" in str(e):
@@ -85,10 +86,17 @@ class ZipRecruiterScraper(Scraper):
         for page in range(1, max_pages + 1):
             if len(job_list) >= scraper_input.results_wanted:
                 break
-
-            jobs_on_page, continue_token = self.find_jobs_in_page(
-                scraper_input, continue_token
-            )
+            
+            jobs_on_page, continue_token = [], None
+            
+            try:
+                jobs_on_page, continue_token = self.find_jobs_in_page(
+                    scraper_input, continue_token
+                )
+            except ZipRecruiterException as e:
+                print(f"ZipRecruiterException: scrape failed on page {page}, {e}")
+                break
+            
             if jobs_on_page:
                 job_list.extend(jobs_on_page)
 
