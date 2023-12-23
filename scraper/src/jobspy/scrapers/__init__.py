@@ -14,7 +14,7 @@ class ScraperInput(BaseModel):
     search_term: str
 
     location: str = None
-    country: Optional[Country] = Country.USA
+    country: Optional[Country] = Country.CANADA
     distance: Optional[int] = None
     is_remote: bool = False
     job_type: Optional[JobType] = None

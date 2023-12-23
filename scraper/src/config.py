@@ -24,7 +24,7 @@ SEARCH_TERMS = [
 # Scraper settings configuration
 SCRAPER_SETTINGS = {
     "site_names": ["indeed", "linkedin", "glassdoor"],
-    "location": "",
+    "location": "Canada",
     "results_wanted": 15,
     "country_indeed": "Canada",
     "hyperlinks": False,
