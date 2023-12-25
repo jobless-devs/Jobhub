@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  client:
+    image: node:18-alpine
+    command: sh -c "yarn && yarn dev"
+    working_dir: /opt/jobhub-client
+    container_name: jobhub-client
+    volumes:
+      - jobhub-client-sync:/opt/jobhub-client:nocopy
+    ports:
+      - 3000:3000
+
+  scraper:
+    build: ./scraper
+    working_dir: /opt/jobhub-scaper
+    container_name: jobhub-scraper
+    volumes:
+      - jobhub-client-sync:/opt/jobhub-client:nocopy
+    env_file:
+      - ./scraper/.env
+    environment:
+      TZ: America/Vancouver
+
+volumes:
+  jobhub-client-sync:
+    external: true
+  jobhub-scraper-sync:
+    external: true

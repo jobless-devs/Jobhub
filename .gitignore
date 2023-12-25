@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 scraper/data/
+
+.docker-sync
