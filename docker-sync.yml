@@ -1,12 +1,8 @@
-version: "2"
+version: '2'
 options:
   compose-file-path: ['docker-compose.yml']
 
 syncs:
-  jobhub-nginx-sync:
-    src: '.'
-    sync_excludes: ['.git', '.gitignore', 'node_modules']
-
   jobhub-client-sync:
     src: './client'
     sync_excludes: ['.git', '.gitignore', 'node_modules']
