@@ -12,7 +12,7 @@ services:
 
   scraper:
     build: ./scraper
-    working_dir: /opt/jobhub-scaper
+    working_dir: /opt/jobhub-scraper
     container_name: jobhub-scraper
     volumes:
       - jobhub-client-sync:/opt/jobhub-client:nocopy
