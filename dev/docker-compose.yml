@@ -21,6 +21,18 @@ services:
     environment:
       TZ: America/Vancouver
 
+  postgres:
+    image: postgres:14-alpine
+    container_name: jobhub-postgres
+    volumes:
+      - ../database/temp/postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: jobhub_dev_user
+      POSTGRES_PASSWORD: jobhub_dev_password
+      POSTGRES_DB: jobhub_dev_db
+
 volumes:
   jobhub-client-sync:
     external: true

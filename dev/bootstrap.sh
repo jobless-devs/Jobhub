@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Reminder to set execute permissions
-echo "Ensure this script has execute permissions: chmod +x setup_docker_sync_improved.sh"
-
 # Determine which shell profile to use (.bash_profile for bash and .zshrc for zsh)
 SHELL_PROFILE="$HOME/.bash_profile"
 if [ "$SHELL" = "/bin/zsh" ]; then
