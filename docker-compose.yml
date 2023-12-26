@@ -15,7 +15,7 @@ services:
     working_dir: /opt/jobhub-scaper
     container_name: jobhub-scraper
     volumes:
-      - jobhub-client-sync:/opt/jobhub-client:nocopy
+      - jobhub-scraper-sync:/opt/jobhub-scraper:nocopy
     env_file:
       - ./scraper/.env
     environment:
