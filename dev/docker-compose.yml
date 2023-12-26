@@ -11,13 +11,13 @@ services:
       - 3000:3000
 
   scraper:
-    build: ./scraper
+    build: ../scraper
     working_dir: /opt/jobhub-scraper
     container_name: jobhub-scraper
     volumes:
       - jobhub-scraper-sync:/opt/jobhub-scraper:nocopy
     env_file:
-      - ./scraper/.env
+      - ../scraper/.env
     environment:
       TZ: America/Vancouver
 
