@@ -162,3 +162,5 @@ cython_debug/
 scraper/data/
 
 .docker-sync
+
+.DS_Store
