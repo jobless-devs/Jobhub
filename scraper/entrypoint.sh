@@ -1,7 +1,8 @@
 #!/bin/bash
 # Run your main application
 echo "Running scraper"
-python /opt/jobhub-scraper/main.py
+# python /opt/jobhub-scraper/main.py
 
 # Then keep the container running
-# tail -f /dev/null
+tail -f /dev/null
+echo "Scraper container is up" 
