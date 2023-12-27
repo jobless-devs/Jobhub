@@ -2,7 +2,10 @@
 FROM python:3.11-slim
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /opt/jobhub-scraper
+
+# Set Python to run unbuffered
+ENV PYTHONUNBUFFERED=1
 
 # Copy only the requirements.txt file to use Docker's caching mechanism
 COPY requirements.txt ./

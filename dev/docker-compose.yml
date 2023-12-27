@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  client:
+    image: node:18-alpine
+    command: sh -c "yarn && yarn dev"
+    working_dir: /opt/jobhub-client
+    container_name: jobhub-client
+    volumes:
+      - jobhub-client-sync:/opt/jobhub-client:nocopy
+    ports:
+      - 3000:3000
+
+  scraper:
+    build: ../scraper
+    working_dir: /opt/jobhub-scraper
+    container_name: jobhub-scraper
+    volumes:
+      - jobhub-scraper-sync:/opt/jobhub-scraper:nocopy
+    env_file:
+      - ../scraper/.env
+    environment:
+      TZ: America/Vancouver
+
+  postgres:
+    image: postgres:14-alpine
+    container_name: jobhub-postgres
+    volumes:
+      - ../database/temp/postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: jobhub_dev_user
+      POSTGRES_PASSWORD: jobhub_dev_password
+      POSTGRES_DB: jobhub_dev_db
+
+volumes:
+  jobhub-client-sync:
+    external: true
+  jobhub-scraper-sync:
+    external: true
