@@ -9,8 +9,16 @@ elif [ "$SHELL" = "/bin/bash" ]; then
 fi
 
 # Install Homebrew Ruby
-echo "Installing Homebrew Ruby..."
-brew install ruby
+if [[ "$(uname)" == "Darwin" ]]; then
+    echo "It's a Mac."
+    brew install ruby
+elif [[ "$(uname)" == "Linux" ]]; then
+    echo "It's Linux."
+    sudo apt update
+    sudo apt install ruby
+else
+    echo "It's neither Mac nor Linux. You're on your own. Please download Ruby"
+fi
 
 # Update PATH to include Homebrew Ruby and Gem Executable Directory
 echo 'export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.2.0/bin:$PATH"' >> "$SHELL_PROFILE"
@@ -34,6 +42,10 @@ docker-sync -v
 # Start docker-sync
 echo "Starting docker-sync..."
 docker-sync start
+
+# Build docker-compose
+echo "Building docker-compose..."
+docker-compose build
 
 # Run Docker containers as defined in the docker-compose.yml file
 echo "Running Docker containers..."
