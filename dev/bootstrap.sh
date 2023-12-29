@@ -10,10 +10,10 @@ fi
 
 # Install Homebrew Ruby
 if [[ "$(uname)" == "Darwin" ]]; then
-    echo "It's a Mac."
+    echo "Installing Ruby for Mac."
     brew install ruby
 elif [[ "$(uname)" == "Linux" ]]; then
-    echo "It's Linux."
+    echo "Installing Ruby for Ubuntu."
     sudo apt update
     sudo apt install ruby
 else
@@ -21,7 +21,17 @@ else
 fi
 
 # Update PATH to include Homebrew Ruby and Gem Executable Directory
-echo 'export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.2.0/bin:$PATH"' >> "$SHELL_PROFILE"
+ADDING_PATH_FOR_RUBY='export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.2.0/bin:$PATH"'
+
+# Check if the new path is already in the file
+if grep -Fxq "$ADDING_PATH_FOR_RUBY" "$SHELL_PROFILE"; then
+    # If found, print a message
+    echo "Ruby path already added in $SHELL_PROFILE"
+else
+    # If not found, append to the file
+    echo "$ADDING_PATH_FOR_RUBY" >> "$SHELL_PROFILE"
+    echo "Ruby path added to $SHELL_PROFILE"
+fi
 
 # Reload Shell Configuration
 echo "Updating and sourcing the shell profile..."
