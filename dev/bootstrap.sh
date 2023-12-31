@@ -9,11 +9,29 @@ elif [ "$SHELL" = "/bin/bash" ]; then
 fi
 
 # Install Homebrew Ruby
-echo "Installing Homebrew Ruby..."
-brew install ruby
+if [[ "$(uname)" == "Darwin" ]]; then
+    echo "Installing Ruby for Mac."
+    brew install ruby
+elif [[ "$(uname)" == "Linux" ]]; then
+    echo "Installing Ruby for Ubuntu."
+    sudo apt update
+    sudo apt install ruby
+else
+    echo "It's neither Mac nor Linux. You're on your own. Please download Ruby"
+fi
 
 # Update PATH to include Homebrew Ruby and Gem Executable Directory
-echo 'export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.2.0/bin:$PATH"' >> "$SHELL_PROFILE"
+ADDING_PATH_FOR_RUBY='export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.2.0/bin:$PATH"'
+
+# Check if the new path is already in the file
+if grep -Fxq "$ADDING_PATH_FOR_RUBY" "$SHELL_PROFILE"; then
+    # If found, print a message
+    echo "Ruby path already added in $SHELL_PROFILE"
+else
+    # If not found, append to the file
+    echo "$ADDING_PATH_FOR_RUBY" >> "$SHELL_PROFILE"
+    echo "Ruby path added to $SHELL_PROFILE"
+fi
 
 # Reload Shell Configuration
 echo "Updating and sourcing the shell profile..."
@@ -34,6 +52,10 @@ docker-sync -v
 # Start docker-sync
 echo "Starting docker-sync..."
 docker-sync start
+
+# Build docker-compose
+echo "Building docker-compose..."
+docker-compose build
 
 # Run Docker containers as defined in the docker-compose.yml file
 echo "Running Docker containers..."
