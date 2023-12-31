@@ -16,8 +16,8 @@ build_docker_compose() {
 run_docker_containers() {
   echo "Running Docker containers..."
   docker-compose up -d
-  echo "Setup is complete! Your Docker environment is ready."
-  echo "To clean up resources: docker system prune"
+  echo "Setup is complete! Your Docker environment is up and running."
+  echo "To stop, please run: source stop-dev.sh"
 }
 
 # Main script
