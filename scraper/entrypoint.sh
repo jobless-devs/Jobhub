@@ -8,4 +8,4 @@ python /opt/jobhub-scraper/main.py
 
 # Then keep the container running
 # tail -f /dev/null
-echo "Scraper container finsihed running" 
+echo "Scraper container finished running" 
