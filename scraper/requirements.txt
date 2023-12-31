@@ -21,3 +21,4 @@ tls-client==0.2.2
 typing_extensions==4.8.0
 tzdata==2023.3
 urllib3==2.0.7
+python-dotenv==1.0.0

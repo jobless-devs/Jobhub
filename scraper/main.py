@@ -4,6 +4,8 @@ from src.jobspy import scrape_jobs
 from s3.s3_helpers import upload_to_s3
 from src.processors.aggregator import aggregate_csv_files
 from src.config import SEARCH_TERMS, SCRAPER_SETTINGS
+from dotenv import load_dotenv
+load_dotenv()
 
 def setup_data_directory(base_path: str, sub_path: str) -> str:
     data_dir = os.path.join(base_path, sub_path)
