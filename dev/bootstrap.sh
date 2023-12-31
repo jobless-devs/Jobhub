@@ -41,9 +41,30 @@ source "$SHELL_PROFILE"
 echo "Verifying Ruby version..."
 ruby -v
 
+# Ruby Installation Complete And Check Latest Version
+echo "Installing rbenv and ruby-build..."
+brew install rbenv ruby-build
+
+# Add rbenv to shell
+echo 'eval "$(rbenv init -)"' >> "$SHELL_PROFILE"
+
+# Reload Shell Configuration
+echo "Updating and sourcing the shell profile..."
+source "$SHELL_PROFILE"
+
+# Install and set global Ruby version using rbenv
+RUBY_VERSION="3.2.2" # Replace with the desired version or a variable
+echo "Installing Ruby version $RUBY_VERSION..."
+rbenv install "$RUBY_VERSION"
+rbenv global "$RUBY_VERSION"
+rbenv rehash
+
+# Verify Ruby Version
+echo "Verifying Ruby version..."
+ruby -v
 # Install docker-sync
 echo "Installing docker-sync..."
-gem install docker-sync
+sudo gem install docker-sync
 
 # Verify docker-sync Installation
 echo "Verifying docker-sync installation..."
