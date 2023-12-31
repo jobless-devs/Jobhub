@@ -16,7 +16,7 @@ def load_environment_variables():
         # if this is run in glue, use the AWS Glue provided env variables
         # for reference: https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-crawler-pyspark-extensions-get-resolved-options.html
         from awsglue.utils import getResolvedOptions
-        args = getResolvedOptions(sys.argv, ['DB_HOST', 'DB_PORT', 'POSTGRES_DB', 'POSTGRES_USER', 'POSTGRES_PASSWORD'])
+        args = getResolvedOptions(sys.argv, ['S3_PATH', 'DB_HOST', 'DB_PORT', 'POSTGRES_DB', 'POSTGRES_USER', 'POSTGRES_PASSWORD'])
         return args
     except Exception:
         # if run locally, use the .env file 
