@@ -7,6 +7,8 @@ WORKDIR /opt/jobhub-scraper
 # Set Python to run unbuffered
 ENV PYTHONUNBUFFERED=1
 
+ENV S3_BUCKET_NAME=jobhub-job-listings
+
 # Copy only the requirements.txt file to use Docker's caching mechanism
 COPY requirements.txt ./
 
