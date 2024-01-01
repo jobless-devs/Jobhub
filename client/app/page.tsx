@@ -23,10 +23,16 @@ const HomePage = () => {
               <a href="#login" className="hover:bg-custom-black text-white px-6 py-2 rounded-full border">Log In</a>
             </div>
           </nav>
-          <div className="flex flex-1 mt-[18%]"> {/* Using margin to solve for now */}
+          <div className="flex flex-1 mt-[10%]"> {/* Using margin to solve for now */}
             <div className="w-1/2">
-              <div className="wallpaper-image">
-                <img src="/images/Jobhub Landing.png" alt="Job Hub Landing Page" className="w-full px-10"/>
+              <div className="relative w-full">
+                <Image 
+                src="/images/Jobhub Landing.svg" // Path to your SVG
+                alt="Dream Companies"
+                layout="responsive"
+                width={685}
+                height={204}
+                />
               </div>
             </div>
             <div className="w-1/2 text-center space-y-6 px-12">
@@ -45,11 +51,20 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+          {/* Dare to Dream Section */}
+          <div className="flex justify-center items-center w-full"> {/* Using image for now, will use the actual logo and texts*/}
+            <div className="relative w-full">
+              <Image 
+              src="/images/Dream Logo.svg" // Path to your SVG
+              alt="Dream Companies"
+              layout="responsive"
+              width={1442}
+              height={281}
+              />
+            </div>
+          </div>
         </div>
-        {/* Dare to Dream Section */}
-        <div className="wallpaper-image"> {/* Using image for now, will use the actual logo and texts*/}
-                <img src="/images/Dream Logo.png" alt="Dream Big Page" className="w-full px-10"/>
-        </div>
+
 
         {/* Jobs Section */}
         
