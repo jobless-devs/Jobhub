@@ -1,15 +1,22 @@
+'use client'
+
 import Head from 'next/head';
 import Image from 'next/image';
-import React from 'react';
+import React, {useState} from 'react';
+import JobListings from './joblistings';
 
 const HomePage = () => {
+  const [showJobListings, setShowJobs] = useState(false); 
   return (
     <>
       <Head>
         <title>Job Hub</title>
         <meta name="description" content="Find your dream job with Job Hub" />
       </Head>
-
+      <div>
+      {showJobListings ? (
+        <JobListings onBack={() => setShowJobs(false)} />
+      ) : (
       <div className="bg-wallpaper">
         {/* Landing Page */}
         <div className="md:container md:mx-auto w-full h-screen flex flex-col justify-center py-4">
@@ -35,6 +42,7 @@ const HomePage = () => {
                 />
               </div>
             </div>
+          
             <div className="w-1/2 text-center space-y-6 px-12">
               <h1 className="text-4xl font-bold">Your Career Starts Here! &#9654;</h1>
               <p className="text-xl text-center">
@@ -42,7 +50,7 @@ const HomePage = () => {
                 diverse internship opportunities.
               </p>
               <div className="flex justify-center items-center space-x-6 ">
-                <button className="bg-custom-black hover:bg-custom-orange text-white font-semibold py-2 px-4 rounded-full">
+                <button className="bg-custom-black hover:bg-custom-orange text-white font-semibold py-2 px-4 rounded-full" onClick={() => setShowJobs(true)}>
                   Find Job
                 </button>
                 <button className="bg-custom-gray hover:bg-custom-orange text-white font-semibold hover:text-white py-2 px-4 rounded-full">
@@ -64,13 +72,8 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-
-
-        {/* Jobs Section */}
-        
-
-
-
+      </div>
+      )}
       </div>
     </>
   );
