@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS jobs (
     id SERIAL PRIMARY KEY,
-    job_url VARCHAR(255),
+    job_url VARCHAR(255) UNIQUE,
     site VARCHAR(100),
     title VARCHAR(255),
     company VARCHAR(255),
