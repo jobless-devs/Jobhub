@@ -28,3 +28,5 @@
    - move to the same directory as `FetchJobsData.py`
    - inside the directory, run `chmod 755 FetchJobsData.py` and `zip -r ../lambda_deployment.zip .`
    - upload the zip file as the Lambda function's deployment package
+  
+![image](https://github.com/jobless-devs/Jobhub/assets/99154887/d55dc520-4a41-45c9-9fdd-d580dbd6f222)
