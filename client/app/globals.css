@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
 }
@@ -28,7 +28,7 @@ body {
 
 /* globals.css */
 .bg-wallpaper {
-  background: linear-gradient(145deg, rgb(27, 27, 27, 0.95) 0%, rgb(56, 44, 27, 0.95) 15%, rgb(255, 163, 26, 0.95) 100%), url('/images/Jobhub Wallpaper1.png');
+  background: linear-gradient(145deg, rgb(27, 27, 27, 0.90) 0%, rgb(56, 44, 27, 0.92) 12%, rgb(218, 140, 23, 1) 70%), url('/images/Jobhub Wallpaper1.png');
   /* Ensure the image covers the entire element */
   background-size: cover;
   /* Ensure the background (image and gradient) is fixed to cover the entire element */
@@ -38,8 +38,20 @@ body {
   width: 100vw;
 }
 
-.translate-up-50 {
-  transform: translateY(-50px);
+@keyframes slideIn {
+  from {
+    z-index: -1;
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
+
+.animate-slideIn {
+  animation: slideIn 1s ease-in-out;
+}
+
+
 
 
