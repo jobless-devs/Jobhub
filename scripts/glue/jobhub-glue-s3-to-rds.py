@@ -16,7 +16,7 @@ def load_environment_variables():
         # if this is run in glue, use the AWS Glue provided env variables
         # for reference: https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-crawler-pyspark-extensions-get-resolved-options.html
         from awsglue.utils import getResolvedOptions
-        args = getResolvedOptions(sys.argv, ['S3_PATH', 'DB_HOST', 'DB_PORT', 'DB_DB', 'DB_USER', 'DB_PASSWORD'])
+        args = getResolvedOptions(sys.argv, ['S3_PATH', 'DB_HOST', 'DB_PORT', 'DB_NAME', 'DB_USER', 'DB_PASSWORD'])
         return args
     except Exception:
         # if run locally, use the .env file 
@@ -25,7 +25,7 @@ def load_environment_variables():
         return {
             'DB_HOST': os.getenv('DB_HOST'),
             'DB_PORT': os.getenv('DB_PORT'),
-            'DB_DB': os.getenv('DB_DB'),
+            'DB_NAME': os.getenv('DB_NAME'),
             'DB_USER': os.getenv('DB_USER'),
             'DB_PASSWORD': os.getenv('DB_PASSWORD')
         }
@@ -80,7 +80,7 @@ def load_to_postgres(df, db_config):
     logging.info("Loading data into PostgreSQL...")
     try:
         with psycopg2.connect(host=db_config["DB_HOST"], port=db_config["DB_PORT"], 
-                                dbname=db_config["DB_DB"], user=db_config["DB_USER"], 
+                                dbname=db_config["DB_NAME"], user=db_config["DB_USER"], 
                                 password=db_config["DB_PASSWORD"]) as conn:
             with conn.cursor() as cursor:
                 insert_columns = ', '.join([f'"{col}"' for col in df.columns])  # Ensure columns are properly quoted
