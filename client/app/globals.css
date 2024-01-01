@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 80, 80, 80;
-  --background-end-rgb: 80, 80, 80;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,6 +40,7 @@ body {
 
 @keyframes slideIn {
   from {
+    z-index: -1;
     transform: translateX(-100%);
   }
   to {
@@ -48,7 +49,7 @@ body {
 }
 
 .animate-slideIn {
-  animation: slideIn 0.4s ease-in-out;
+  animation: slideIn 1s ease-in-out;
 }
 
 
