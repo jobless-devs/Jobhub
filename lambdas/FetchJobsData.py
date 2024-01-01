@@ -25,7 +25,11 @@ def get_db_connection():
 def fetch_data(cursor):
     try:
         cursor.execute("SELECT id, title, city, location, company, job_type, date_posted, job_url FROM jobs")
-        return cursor.fetchall()
+        # Fetch the column names
+        colnames = [desc[0] for desc in cursor.description]
+        # Use a list comprehension and zip to create a list of dictionaries
+        return [dict(zip(colnames, row)) for row in cursor.fetchall()]
+
     except Exception as e:
         logging.error(f"Error fetching data: {e}")
         raise
@@ -33,14 +37,26 @@ def fetch_data(cursor):
 def lambda_handler(event, context):
     with get_db_connection() as conn, conn.cursor() as cursor:
         rows = fetch_data(cursor)
+        # The rows are a list of dicts, which json.dumps will convert to a list of JSON objects
+        json_rows = json.dumps(rows, default=str)
 
     return {
         'statusCode': 200,
-        'body': json.dumps(rows, default=str),
+        'body': json_rows,
         'records_fetched': len(rows)
     }
     
 if __name__ == "__main__":
     # for local development, run the lambda function
     logging.basicConfig(level=logging.INFO)
-    print(lambda_handler(None, None))
+    result = lambda_handler(None, None)
+
+    # Extracting the statusCode, body, and records_fetched from the result
+    status_code = result['statusCode']
+    records_fetched = result['records_fetched']
+    body = json.loads(result['body'])
+
+    # Print statusCode, one example from body (if available), and records_fetched
+    print(f"Status Code: {status_code}")
+    print(f"Example Record: {body[0] if body else 'No records found'}")
+    print(f"Total Records Fetched: {records_fetched}")
