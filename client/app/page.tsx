@@ -3,7 +3,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import React, {useState} from 'react';
-import JobListings from './joblistings';
+import JobListings from './pages/job-listings';
 
 const HomePage = () => {
   const [showJobListings, setShowJobs] = useState(false); 
@@ -25,7 +25,7 @@ const HomePage = () => {
               <img src="/images/Jobhub Logo.png" alt="Job Hub" className="w-60"/> 
             </div>
             <div className="flex space-x-16">
-              <a href="#jobs" className="hover:bg-custom-black text-white px-6 py-2 rounded-full ">Jobs</a>
+              <a onClick={() => setShowJobs(true)} className="hover:bg-custom-black text-white px-6 py-2 rounded-full ">Jobs</a>
               <a href="#about" className="hover:bg-custom-black text-white px-6 py-2 rounded-full ">About Us</a>
               <a href="#login" className="hover:bg-custom-black text-white px-6 py-2 rounded-full border">Log In</a>
             </div>
@@ -44,7 +44,7 @@ const HomePage = () => {
             </div>
           
             <div className="w-1/2 text-center space-y-6 px-12">
-              <h1 className="text-4xl font-bold">Your Career Starts Here! &#9654;</h1>
+              <h1 className="text-4xl font-bold">Your Career Starts Here! &#5171;</h1>
               <p className="text-xl text-center">
                 Unleash your potential with real-world experiences. Explore, learn, and grow with our
                 diverse internship opportunities.
