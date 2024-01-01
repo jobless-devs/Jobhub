@@ -4,9 +4,11 @@ import Head from 'next/head';
 import Image from 'next/image';
 import React, {useState} from 'react';
 import JobListings from './pages/job-listings';
+import AboutUs from './pages/about-us';
 
 const HomePage = () => {
   const [showJobListings, setShowJobs] = useState(false); 
+  const [showAboutUs, setShowAboutUs] = useState(false);
   return (
     <>
       <Head>
@@ -16,6 +18,8 @@ const HomePage = () => {
       <div>
       {showJobListings ? (
         <JobListings onBack={() => setShowJobs(false)} />
+      ) : showAboutUs ? (
+        <AboutUs onBack={() => setShowAboutUs(false)} />
       ) : (
       <div className="bg-wallpaper">
         {/* Landing Page */}
@@ -25,8 +29,8 @@ const HomePage = () => {
               <img src="/images/Jobhub Logo.png" alt="Job Hub" className="w-60"/> 
             </div>
             <div className="flex space-x-16">
-              <a onClick={() => setShowJobs(true)} className="hover:bg-custom-black text-white px-6 py-2 rounded-full ">Jobs</a>
-              <a href="#about" className="hover:bg-custom-black text-white px-6 py-2 rounded-full ">About Us</a>
+              <a onClick={() => { setShowAboutUs(false); setShowJobs(true); }} className="hover:bg-custom-black text-white px-6 py-2 rounded-full ">Jobs</a>
+              <a onClick={() => { setShowAboutUs(true); setShowJobs(false); }} className="hover:bg-custom-black text-white px-6 py-2 rounded-full ">About Us</a>
               <a href="#login" className="hover:bg-custom-black text-white px-6 py-2 rounded-full border">Log In</a>
             </div>
           </nav>
@@ -50,10 +54,10 @@ const HomePage = () => {
                 diverse internship opportunities.
               </p>
               <div className="flex justify-center items-center space-x-6 ">
-                <button className="bg-custom-black hover:bg-custom-orange text-white font-semibold py-2 px-4 rounded-full" onClick={() => setShowJobs(true)}>
+                <button className="bg-custom-black hover:bg-custom-orange text-white font-semibold py-2 px-4 rounded-full" onClick={() => { setShowAboutUs(false); setShowJobs(true); }}>
                   Find Job
                 </button>
-                <button className="bg-custom-gray hover:bg-custom-orange text-white font-semibold hover:text-white py-2 px-4 rounded-full">
+                <button className="bg-custom-gray hover:bg-custom-orange text-white font-semibold hover:text-white py-2 px-4 rounded-full" onClick={() => { setShowAboutUs(true); setShowJobs(false); }}>
                   Learn More
                 </button>
               </div>

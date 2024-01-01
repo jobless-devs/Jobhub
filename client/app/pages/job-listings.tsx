@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import React, { useEffect, useState, useRef} from 'react';
+import axios from 'axios'; 
 
 // Define Type for Job Card
 type Job = {
@@ -13,50 +14,37 @@ type Job = {
   link: string;
 };
 
-const jobs = [
-  { id: 1, date: "Dec 22", position: "Software Engineer", company: "Company A", location: "New York, NY", link: "#" },
-  { id: 2, date: "Jan 12", position: "Data Analyst", company: "Company B", location: "Toronto, ON", link: "#" },
-  { id: 3, date: "Feb 09", position: "Product Manager", company: "Company C", location: "Vancouver, BC", link: "#" },
-  { id: 4, date: "Mar 05", position: "Graphic Designer", company: "Company D", location: "San Francisco, CA", link: "#" },
-  { id: 5, date: "Apr 18", position: "DevOps Engineer", company: "Company E", location: "Austin, TX", link: "#" },
-  // Add more jobs as needed
-];
-
 type JobListingsProps = {
-  onBack: () => void; // Function to handle going back to the landing page
+  onBack: () => void;
 };
 
 const JobListings = ({onBack}: JobListingsProps) => {
   const [jobs, setJobs] = useState<Job[]>([]);
-
-  // Placeholder data for the job cards
-  // Replace this with your data fetching logic
   useEffect(() => {
     const fetchJobs = async () => {
-      // Replace with actual data fetching from your database
-      const fetchedJobs = [
-      { id: 1, date: "DEC 22", position: "Software Engineer", company: "Company A", location: "New York, NY", link: "#" },
-        { id: 2, date: "JAN 12", position: "Data Analyst", company: "Company B", location: "Toronto, ON", link: "#" },
-        { id: 3, date: "FEB 09", position: "Product Manager", company: "Company C", location: "Vancouver, BC", link: "#" },
-        { id: 4, date: "MAR 05", position: "Graphic Designer", company: "Company D", location: "San Francisco, CA", link: "#" },
-        { id: 5, date: "APR 18", position: "DevOps Engineer", company: "Company E", location: "Austin, TX", link: "#" },
-        { id: 6, date: "DEC 22", position: "Software Engineer", company: "Company A", location: "New York, NY", link: "#" },
-        { id: 7, date: "JAN 12", position: "Data Analyst", company: "Company B", location: "Toronto, ON", link: "#" },
-        { id: 8, date: "FEB 09", position: "Product Manager", company: "Company C", location: "Vancouver, BC", link: "#" },
-        { id: 9, date: "MAR 05", position: "Graphic Designer", company: "Company D", location: "San Francisco, CA", link: "#" },
-        { id: 10, date: "APR 18", position: "DevOps Engineer", company: "Company E", location: "Austin, TX", link: "#" },
-        { id: 11, date: "DEC 22", position: "Software Engineer", company: "Company A", location: "New York, NY", link: "#" },
-        { id: 12, date: "JAN 12", position: "Data Analyst", company: "Company B", location: "Toronto, ON", link: "#" },
-        { id: 13, date: "FEB 09", position: "Product Manager", company: "Company C", location: "Vancouver, BC", link: "#" },
-        { id: 14, date: "MAR 05", position: "Graphic Designer", company: "Company D", location: "San Francisco, CA", link: "#" },
-        { id: 15, date: "APR 18", position: "DevOps Engineer", company: "Company E", location: "Austin, TX", link: "#" },
-        // Add more jobs as needed
-      ];
-      setJobs(fetchedJobs);
+      try {
+        // API call to your endpoint
+        const response = await axios.get('https://9loe6yy9pk.execute-api.us-east-1.amazonaws.com/prod/jobs');
+        console.log("API Response:", response.data); 
+        if (response.status === 200) {
+          const fetchedJobs = response.data.map((job: any) => ({
+            id: job.id,
+            date: job.date_posted,
+            position: job.title,
+            company: job.company,
+            location: job.location,
+            link: job.job_url
+          }));
+          setJobs(fetchedJobs);
+        }
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      }
     };
 
     fetchJobs();
   }, []);
+
 
   const [visibleJobsCount, setVisibleJobsCount] = useState(10); // Start with 10 jobs
 
@@ -66,8 +54,9 @@ const JobListings = ({onBack}: JobListingsProps) => {
 
   const jobsToShow = jobs.slice(0, visibleJobsCount); // Show only a subset of jobs
   
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const playAudio = () => {
+  const audioRef = useRef<HTMLAudioElement>(null);  // Create a reference to the audio element
+
+  const playAudio = () => { // Function to play audio
     if (audioRef.current) {
       audioRef.current.play();
     }
@@ -82,30 +71,29 @@ const JobListings = ({onBack}: JobListingsProps) => {
         <span className="text-custom-orange">Listings</span>
       </div>
       <div className="flex justify-between items-center mb-6">
-
-    <form className="w-[50%] pr-4">
-      <div className="relative">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
-        <input
-          type="text"
-          placeholder="Search"
-          className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
-        />
-            </div>
-        </form>
+        <form className="w-[50%] pr-4">
+          <div className="relative">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <input
+              type="text"
+              placeholder="Search"
+              className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
+            />
+              </div>
+          </form>
         <div className="flex w-[50%] space-x-2 items-center justify-end text-custom-white">
           {/* Filter buttons or dropdowns */}
           <select className="p-2  border bg-custom-black rounded-sm w-full">

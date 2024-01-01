@@ -38,6 +38,18 @@ body {
   width: 100vw;
 }
 
+.bg-wallpaper-about-us {
+  background: linear-gradient(145deg, rgb(27, 27, 27, 0.90) 0%, rgb(56, 44, 27, 0.92) 12%, rgb(218, 140, 23, 1) 70%), url('/images/Jobhub AboutUs.png');
+  /* Ensure the image covers the entire element */
+  background-size: cover;
+  /* Ensure the background (image and gradient) is fixed to cover the entire element */
+  background-position: center;
+  /* Additional styles as needed (like setting the size of the element) */
+  height: 100vh;
+  width: 100vw;
+}
+
+
 @keyframes slideIn {
   from {
     z-index: -1;
