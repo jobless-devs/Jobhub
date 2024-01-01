@@ -38,8 +38,19 @@ body {
   width: 100vw;
 }
 
-.translate-up-50 {
-  transform: translateY(-50px);
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
+
+.animate-slideIn {
+  animation: slideIn 0.4s ease-in-out;
+}
+
+
 
 

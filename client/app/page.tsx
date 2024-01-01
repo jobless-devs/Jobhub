@@ -34,7 +34,7 @@ const HomePage = () => {
             <div className="w-1/2">
               <div className="relative w-full">
                 <Image 
-                src="/images/Jobhub Landing.svg" // Path to your SVG
+                src="/images/Jobhub Landing.svg"
                 alt="Dream Companies"
                 layout="responsive"
                 width={685}
@@ -43,7 +43,7 @@ const HomePage = () => {
               </div>
             </div>
           
-            <div className="w-1/2 text-center space-y-6 px-12">
+            <div className="w-1/2 text-center space-y-6 px-12 animate-slideIn">
               <h1 className="text-4xl font-bold">Your Career Starts Here! &#5171;</h1>
               <p className="text-xl text-center">
                 Unleash your potential with real-world experiences. Explore, learn, and grow with our
@@ -63,7 +63,7 @@ const HomePage = () => {
           <div className="flex justify-center items-center w-full"> {/* Using image for now, will use the actual logo and texts*/}
             <div className="relative w-full">
               <Image 
-              src="/images/Dream Logo.svg" // Path to your SVG
+              src="/images/Dream Logo.svg"
               alt="Dream Companies"
               layout="responsive"
               width={1442}

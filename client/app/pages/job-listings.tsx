@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef} from 'react';
 
 // Define Type for Job Card
 type Job = {
@@ -65,7 +65,13 @@ const JobListings = ({onBack}: JobListingsProps) => {
   };
 
   const jobsToShow = jobs.slice(0, visibleJobsCount); // Show only a subset of jobs
-
+  
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const playAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
   return (
     <div className="container mx-auto">
       <button onClick={onBack} className="bg-custom-black hover:bg-custom-orange text-center text-white p-2 rounded mt-3 justify-center mx-auto">
@@ -124,30 +130,34 @@ const JobListings = ({onBack}: JobListingsProps) => {
           </select>
         </div>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-custom-black border mb-6">
-      {jobsToShow.map(job => (
-        <Link href={job.link} key={job.id} className="block border-2 border-gray-300 rounded-lg p-4 hover:border-custom-orange transition w-full">
-          <div className="grid grid-cols-5">
-            <div className="col-span-1 text-center">
-              <p className="font-bold text-custom-orange">{job.date.split(" ")[0]}</p>
-              <p className="font-bold">{job.date.split(" ")[1]}</p>
+      
+      <div>
+        <audio ref={audioRef} src="/Jobhub Click.mp3" preload="auto"></audio>
+        <div onClick={playAudio} className="cursor-pointer grid grid-cols-1 md:grid-cols-2 gap-4 text-custom-black border mb-6">
+          
+        {jobsToShow.map(job => (
+          <Link href={job.link} key={job.id} className="block border-2 border-gray-300 rounded-lg p-4 hover:border-custom-orange transition w-full">
+            <div className="grid grid-cols-5">
+              <div className="col-span-1 text-center">
+                <p className="font-bold text-custom-orange">{job.date.split(" ")[0]}</p>
+                <p className="font-bold">{job.date.split(" ")[1]}</p>
+              </div>
+              <div className="col-span-4 pl-4">
+                <h2 className="font-bold text-xl">{job.position}</h2>
+                <p>{job.company}</p>
+                <p>{job.location}</p>
+              </div>
             </div>
-            <div className="col-span-4 pl-4">
-              <h2 className="font-bold text-xl">{job.position}</h2>
-              <p>{job.company}</p>
-              <p>{job.location}</p>
-            </div>
-          </div>
-        </Link>
-        ))}
-      </div>
-      <div className="flex justify-center items-center mb-2">
-      {visibleJobsCount < jobs.length && (
-        <button onClick={loadMoreJobs} className="bg-custom-black hover:bg-custom-orange text-center text-white p-2 rounded my-2 justify-center mx-auto">
-          Load More
-        </button>
-      )}
+          </Link>
+          ))}
+        </div>
+        <div className="flex justify-center items-center mb-2">
+        {visibleJobsCount < jobs.length && (
+          <button onClick={loadMoreJobs} className="bg-custom-black hover:bg-custom-orange text-center text-white p-2 rounded my-2 justify-center mx-auto">
+            Load More
+          </button>
+        )}
+        </div>
       </div>
     </div>
   );
