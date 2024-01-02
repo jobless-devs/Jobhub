@@ -2,13 +2,50 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
-import React, {useState} from 'react';
+import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 import JobListings from './pages/job-listings';
 import AboutUs from './pages/about-us';
+
+type Job = {
+  id: number;
+  date: string;
+  position: string;
+  company: string;
+  location: string;
+  link: string;
+};
 
 const HomePage = () => {
   const [showJobListings, setShowJobs] = useState(false); 
   const [showAboutUs, setShowAboutUs] = useState(false);
+  const [jobs, setJobs] = useState<Job[]>([]);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get('https://9loe6yy9pk.execute-api.us-east-1.amazonaws.com/prod/jobs');
+        if (response.status === 200 && response.data) {
+          const responseBody = typeof response.data.body === 'string' ? JSON.parse(response.data.body) : response.data.body;
+          if (Array.isArray(responseBody)) {
+            const fetchedJobs = responseBody.map((job: any) => ({
+              id: job.id,
+              date: job.date_posted,
+              position: job.title,
+              company: job.company,
+              location: job.location,
+              link: job.job_url
+            }));
+            setJobs(fetchedJobs);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      }
+    };
+    fetchJobs();
+  }, []);
+
   return (
     <>
       <Head>
@@ -17,10 +54,10 @@ const HomePage = () => {
       </Head>
       <div>
       {showJobListings ? (
-        <JobListings onBack={() => setShowJobs(false)} />
-      ) : showAboutUs ? (
-        <AboutUs onBack={() => setShowAboutUs(false)} />
-      ) : (
+          <JobListings jobs={jobs} onBack={() => setShowJobs(false)} />
+          ) : showAboutUs ? (
+            <AboutUs onBack={() => setShowAboutUs(false)} />
+          ) : (
       <div className="bg-wallpaper">
         {/* Landing Page */}
         <div className="md:container md:mx-auto w-full h-screen flex flex-col justify-center py-4">
