@@ -3,26 +3,9 @@ from datetime import datetime
 from src.jobspy import scrape_jobs
 from s3.s3_helpers import upload_to_s3
 from src.processors.aggregator import aggregate_csv_files
+from src.config import SEARCH_TERMS, SCRAPER_SETTINGS
 from dotenv import load_dotenv
 load_dotenv()
-
-# Helper function to convert string to boolean
-def str_to_bool(s):
-    return s.lower() == 'true' if s else False
-
-# Parse SEARCH_TERMS
-SEARCH_TERMS = os.getenv('SEARCH_TERMS', '').split(',')
-
-# Construct SCRAPER_SETTINGS from environment variables
-SCRAPER_SETTINGS = {
-    'site_names': os.getenv('SITE_NAMES', '').split(','),
-    'location': os.getenv('LOCATION', 'Canada'),
-    'results_wanted': int(os.getenv('RESULTS_WANTED', '15')),
-    'country_indeed': os.getenv('COUNTRY_INDEED', 'Canada'),
-    'hyperlinks': str_to_bool(os.getenv('HYPERLINKS')),
-    'proxy': os.getenv('PROXY', None),
-    'offset': int(os.getenv('OFFSET', '0'))
-}
 
 def setup_data_directory(base_path: str, sub_path: str) -> str:
     data_dir = os.path.join(base_path, sub_path)
@@ -51,13 +34,13 @@ def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     individual_run_dir = setup_data_directory(current_dir, 'data/individual_run')
     aggregated_dir = setup_data_directory(current_dir, 'data/aggregated')
-
+    
     search_terms = SEARCH_TERMS 
     site_names = SCRAPER_SETTINGS['site_names']
     location = SCRAPER_SETTINGS['location']
     results_wanted = SCRAPER_SETTINGS['results_wanted']
     country = SCRAPER_SETTINGS['country_indeed'] # Indeed only 
-        
+    
     for term in search_terms:
         timestamp = datetime.now().strftime('%Y%m%dT%H%M%S')  # Compact timestamp
         term_filename = term.replace(" ", "_").lower()

@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS jobs (
     id SERIAL PRIMARY KEY,
-    job_url VARCHAR(255) UNIQUE,
+    job_url VARCHAR(255),
     site VARCHAR(100),
     title VARCHAR(255),
     company VARCHAR(255),
@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS jobs (
     location VARCHAR(255),
     job_type VARCHAR(50),
     date_posted DATE,
-    date_fetched DATE,
     interval VARCHAR(50),
     min_amount FLOAT,
     max_amount FLOAT,
