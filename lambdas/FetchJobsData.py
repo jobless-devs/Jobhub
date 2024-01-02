@@ -24,7 +24,7 @@ def get_db_connection():
 
 def fetch_data(cursor):
     try:
-        cursor.execute("SELECT id, title, city, location, company, job_type, date_posted, job_url FROM jobs")
+        cursor.execute("SELECT id, title, city, location, company, job_type, date_posted, job_url FROM jobs ORDER BY date_posted DESC")
         # Fetch the column names
         colnames = [desc[0] for desc in cursor.description]
         # Use a list comprehension and zip to create a list of dictionaries
