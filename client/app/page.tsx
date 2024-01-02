@@ -63,7 +63,7 @@ const HomePage = () => {
         <div className="md:container md:mx-auto w-full h-screen flex flex-col justify-center py-4">
           <nav className="flex justify-between items-center py-4">
             <div className="jobhub-logo">
-              <img src="/images/Jobhub Logo.png" alt="Job Hub" className="w-60"/> 
+              <Image src="/images/Jobhub Logo.png" alt="Job Hub" className="w-60" width="240" height="300"/> 
             </div>
             <div className="flex space-x-16">
               <a onClick={() => { setShowAboutUs(false); setShowJobs(true); }} className="hover:bg-custom-black text-white px-6 py-2 rounded-full ">Jobs</a>
