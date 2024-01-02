@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS jobs (
     location VARCHAR(255),
     job_type VARCHAR(50),
     date_posted DATE,
+    date_fetched DATE,
     interval VARCHAR(50),
     min_amount FLOAT,
     max_amount FLOAT,

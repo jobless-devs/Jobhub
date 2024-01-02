@@ -74,6 +74,9 @@ def process_data(df):
     # Extracting city from the 'location' column
     df_canada['city'] = df_canada['location'].apply(lambda x: x.split(',')[0].strip())
 
+    # Add current date to the DataFrame
+    df['date_fetched'] = datetime.now().date()
+    
     return df_canada
 
 def load_to_postgres(df, db_config):
