@@ -15,7 +15,7 @@ type Job = {
 };
 
 type JobListingsProps = {
-  jobs?: Job[]; // jobs is now an optional prop
+  jobs?: Job[]; 
   onBack: () => void;
 };
 
@@ -80,15 +80,17 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
 
   return (
     <div className="container mx-auto">
-      <button onClick={onBack} className="bg-custom-black hover:bg-custom-orange text-center text-white p-2 rounded mt-3 justify-center mx-auto">
+      <button onClick={onBack} className="bg-custom-black hover:bg-custom-orange text-center text-white p-2 rounded mt-3 ml-3 md:ml-0 justify-center mx-auto">
       &#5176; Back
       </button> 
       <div className="text-center text-3xl font-bold my-4">
         <span className="text-custom-black">Job </span>
         <span className="text-custom-orange">Listings</span>
       </div>
-      <div className="flex justify-between items-center mb-6">
-        <form className="w-[50%] pr-4">
+
+    
+      <div className="flex-col md:flex-row flex align-center items-center mb-6">
+        <form className="md:w-[50%] w-full md:pr-4 px-2">
           <div className="relative">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -110,8 +112,8 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
               className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
             />
               </div>
-          </form>
-        <div className="flex w-[50%] space-x-2 items-center justify-end text-custom-white">
+        </form>
+        <div className="flex md:w-[50%] mt-3 md:mt-0 w-full space-x-2 items-center justify-end text-custom-white px-2">
           {/* Filter buttons or dropdowns */}
           <select className="p-2  border bg-custom-black rounded-sm w-full">
           <option selected >Date</option>
@@ -135,10 +137,9 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
           </select>
         </div>
       </div>
-      
-      <div>
-        
-        <div className="cursor-pointer grid grid-cols-1 md:grid-cols-2 gap-4 text-custom-black border mb-6">
+
+      <div> 
+        <div className="cursor-pointer grid grid-cols-1 md:grid-cols-2 gap-4 text-custom-black border mb-6 px-2 md:px-0">
         <audio ref={audioRef} src="/Jobhub Click.mp3" preload="auto"></audio>
         {jobsToShow.map(job => (
           <Link onClick={(event) => playAudioThenNavigate(job.link, event)} href={job.link} key={job.id} className="block border-2 border-gray-300 rounded-lg p-4 hover:border-custom-orange transition w-full">
