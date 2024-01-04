@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link';
+import Image from 'next/image';
 import React, { useEffect, useState, useRef} from 'react';
 import axios from 'axios'; 
 
@@ -80,9 +81,7 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
 
   return (
     <div className="container mx-auto">
-      <button onClick={onBack} className="bg-custom-black hover:bg-custom-orange text-center text-white p-2 rounded mt-3 ml-3 md:ml-0 justify-center mx-auto">
-      &#5176; Back
-      </button> 
+        <button onClick={onBack} className="bg-custom-black hover:bg-custom-orange text-center align-center text-white p-2 rounded mt-3 ml-3 md:ml-0 justify-center mx-autos flex flex-row">&#5176; <Image src="/images/Jobhub Logo.png" alt="Job Hub" className="onClick={onBack} md:w-16" width="60" height="150"/> </button>
       <div className="text-center text-3xl font-bold my-4">
         <span className="text-custom-black">Job </span>
         <span className="text-custom-orange">Listings</span>

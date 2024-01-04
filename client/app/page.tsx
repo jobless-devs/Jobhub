@@ -64,51 +64,51 @@ const HomePage = () => {
           ) : (
 
       // Wallpaper for the Whole Screen
-      <div className="bg-wallpaper flex flex-col min-h-screen overflow-hidden">
+      <div className="bg-wallpaper flex flex-col h-screen overflow-hidden">
 
         {/* Landing Page Navigation Bar and Logo*/}
-        <div className="pt-4 mx-auto mx-auto w-full flex flex-col justify-center py-4">
-          <nav className="flex justify-between items-center px-4 md:px-8 relative">
+        <div className="pt-4 mx-auto w-full flex flex-col justify-center py-12 md:py-4">
+          <nav className="flex  flex-grow justify-between items-center px-4 md:px-8 relative">
             <div className="jobhub-logo  ">
-              <Image src="/images/Jobhub Logo.png" alt="Job Hub" className="md:w-60" width="150" height="300"/> 
+              <Image src="/images/Jobhub Logo.png" alt="Job Hub" className="md:w-56" width="150" height="300"/> 
             </div>
             <button onClick={toggleMobileMenu} className="md:hidden">
               <span className='text-3xl'>&#9776;</span> {/* Replace with an icon */}
             </button>
-            <div className={`${isMobileMenuOpen ? 'flex' : 'hidden'} flex-col absolute top-full right-0 bg-white shadow-md py-2 w-full z-50`}>
-              <a onClick={() => { setShowAboutUs(false); setShowJobs(true); toggleMobileMenu();}} className="hover:bg-custom-black text-custom-black px-6 py-2 rounded-full ">Jobs</a>
-              <a onClick={() => { setShowAboutUs(true); setShowJobs(false); toggleMobileMenu();}} className="hover:bg-custom-black text-custom-black px-6 py-2 rounded-full ">About Us</a>
-              <a href="#login" className="hover:bg-custom-black text-custom-black px-6 py-2 rounded-full border">Log In</a>
+            <div className={`${isMobileMenuOpen ? 'flex' : 'hidden'} flex-col absolute top-full right-0 bg-custom-black shadow-md py-2 w-full z-50`}>
+              <a onClick={() => { setShowAboutUs(false); setShowJobs(true); toggleMobileMenu();}} className="hover:bg-custom-orange text-custom-white px-6 py-2 rounded-full ">Jobs</a>
+              <a onClick={() => { setShowAboutUs(true); setShowJobs(false); toggleMobileMenu();}} className="hover:bg-custom-orange text-custom-white px-6 py-2 rounded-full ">About Us</a>
+              <a href="#login" className="hover:bg-custom-orange text-custom-white px-6 py-2 rounded-full border">Log In</a>
             </div>
             <div className="hidden md:flex space-x-16 text-center items-center">
-              <a onClick={() => { setShowAboutUs(false); setShowJobs(true); }}  className="text-white hover:bg-custom-black text-custom-black px-6 py-2 rounded-full">Jobs</a>
-              <a onClick={() => { setShowAboutUs(false); setShowJobs(true); }}  className="text-white hover:bg-custom-black text-custom-black px-6 py-2 rounded-full">About Us</a>
+              <a onClick={() => { setShowAboutUs(false); setShowJobs(true); }}  className="text-custom-white hover:bg-custom-black text-custom-black px-6 py-2 rounded-full">Jobs</a>
+              <a onClick={() => { setShowAboutUs(true); setShowJobs(false); }}  className="text-custom-white hover:bg-custom-black text-custom-black px-6 py-2 rounded-full">About Us</a>
               <a href="#login" className="text-white hover:bg-custom-black text-white px-6 py-2 rounded-full border">Log In</a>
             </div>
           </nav>
         </div>
 
         {/* Landing Page Content */}
-        <div className=" md:mx-auto w-full flex flex-col md:flex-row justify-center items-center py-4 px-4 md:px-8 mt-[10%]">
-          <div className="md:w-1/2 flex justify-center mb-8">
-            <div className="relative w-full max-w-md">
+        <div className=" md:mx-auto w-full flex flex-grow flex-col md:flex-row justify-center items-center py-4 px-6 md:px-8">
+          <div className="md:w-1/2 flex justify-center mb-12">
+            <div className="relative md:w-[80%]">
               <Image 
                 src="/images/Jobhub Landing.svg"
                 alt="Dream Companies"
                 layout="responsive"
-                width={685}
-                height={204}
+                width={1000}
+                height={400}
               />
             </div>
           </div>
 
-          <div className="md:w-1/2 md:space-y-4 mb-[20%] md:mb-0 flex flex-col text-center space-y-6 px-12 animate-slideIn">
+          <div className="md:w-1/2 w-full md:space-y-4 mb-[20%] md:mb-0 flex flex-col text-center space-y-6 px-2 animate-slideIn">
             <h1 className="md:text-4xl text-2xl font-bold">Your Career Starts Here! &#5171;</h1>
             <p className="md:text-xl text-md text-center">
               Unleash your potential with real-world experiences. Explore, learn, and grow with our
               diverse internship opportunities.
             </p>
-            <div className="flex justify-center items-center space-x-6 ">
+            <div className="flex justify-center items-center space-x-6 py-4 md:py-\2">
               <button className="bg-custom-black hover:bg-custom-orange text-white font-semibold py-2 px-4 rounded-full " onClick={() => { setShowAboutUs(false); setShowJobs(true); }}>
                 Find Job
               </button>
@@ -120,18 +120,8 @@ const HomePage = () => {
         </div>
           
           {/* Dare to Dream Section */}
-          <div className='bottom-0 md:absolute relative w-full'>
-            <div className="flex flex-grow w-full "> {/* Using image for now, will use the actual logo and texts*/}
-              <div className="relative w-full block md:hidden">
-                <Image 
-                  src="/images/Dream Logo-Mobile.svg" // Replace with your mobile image
-                  alt="Dream Companies Mobile"
-                  layout="responsive"
-                  width={560} // Adjust based on your mobile image's aspect ratio
-                  height={536}
-                />
-              </div>
-              <div className="relative w-full hidden md:block">
+          <div className='flex flex-grow relative w-full justify-center'> {/* Center the container */}
+            <div className="w-[80%] flex justify-center items-end md:block hidden bottom-0 absolute"> {/* Center the content and align it to the bottom */}
                 <Image 
                 src="/images/Dream Logo.svg"
                 alt="Dream Companies"
@@ -139,10 +129,9 @@ const HomePage = () => {
                 width={1442}
                 height={281}
                 />
-              </div>
             </div>
-          </div>
         </div>
+      </div>
       )}
       </div>
     </>

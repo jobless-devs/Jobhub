@@ -28,7 +28,7 @@ body {
 
 /* globals.css */
 .bg-wallpaper {
-  background: linear-gradient(145deg, rgb(27, 27, 27, 0.90) 0%, rgb(56, 44, 27, 0.92) 12%, rgb(218, 140, 23, 1) 70%), url('/images/Jobhub Wallpaper1.png');
+  background: linear-gradient(145deg, rgb(27, 27, 27, 0.9) 0%, rgb(56, 44, 27, 0.94) 12%, rgb(255, 173, 50, 0.95) 70%), url('/images/Jobhub Wallpaper1.png');
   /* Ensure the image covers the entire element */
   background-size: cover;
   /* Ensure the background (image and gradient) is fixed to cover the entire element */
@@ -39,7 +39,7 @@ body {
 }
 
 .bg-wallpaper-about-us {
-  background: linear-gradient(240deg, rgb(27, 27, 27, 0.90) 0%, rgb(56, 44, 27, 0.92) 12%, rgb(218, 140, 23, 1) 70%), url('/images/Jobhub AboutUs.png');
+  background: linear-gradient(240deg, rgb(27, 27, 27, 0.9) 0%, rgb(56, 44, 27, 0.94) 12%, rgb(255, 173, 50, 0.95) 70%), url('/images/Jobhub AboutUs.png');
   /* Ensure the image covers the entire element */
   background-size: cover;
   /* Ensure the background (image and gradient) is fixed to cover the entire element */
