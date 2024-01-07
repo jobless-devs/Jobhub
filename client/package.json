@@ -1,8 +1,14 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "engines": {
+    "npm": "This project only supports yarn",
+    "yarn": ">=1.13.0",
+    "node": ">=18"
+  },
   "private": true,
   "scripts": {
+    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
