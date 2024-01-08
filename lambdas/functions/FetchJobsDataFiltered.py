@@ -11,59 +11,47 @@ try:
     import dotenv
     dotenv.load_dotenv()
 except ImportError:
-    logging.warning('dotenv not available, assuming running in AWS environment')
-    
-# Constants for environment variables
-DB_HOST = os.environ['DB_HOST']
-DB_PORT = os.environ['DB_PORT']
-DB_NAME = os.environ['DB_NAME']
-DB_USER = os.environ['DB_USER']
-DB_PASSWORD = os.environ['DB_PASSWORD']
+    # Import in production
+    from DbConnection import get_db_connection # dbConnectionLayer
+    from ProvinceMapping import PROVINCE_MAPPING # provinceMappingLayer
+    from DbConfig import DB_CONFIG # dbConfig file
 
-# Province mapping for Canadian provinces in a standardized format
-PROVINCE_MAPPING = {
-    "ab": "alberta",
-    "bc": "britishcolumbia",
-    "mb": "manitoba",
-    "nb": "newbrunswick",
-    "nl": "newfoundlandandlabrador",
-    "ns": "novascotia",
-    "on": "ontario",
-    "pe": "princeedwardisland",
-    "qc": "quebec",
-    "sk": "saskatchewan",
-    "nt": "northwestterritories",
-    "nu": "nunavut",
-    "yt": "yukon"
-}
+FUNCTION_NAME = 'FetchJobsDataFiltered' # For error logging purpose
 
 def standardize_location(location: str) -> str:
-    """Standardize the location string to lowercase without spaces."""
+    """
+    Standardizes a location string by converting it to lowercase and removing spaces.
+
+    :param location: A string representing the location.
+    :return: A standardized location string.
+    """
     return location.lower().replace(" ", "")
 
-def get_db_connection():
-    """Establishes a database connection using configured environment variables."""
-    try:
-        return psycopg2.connect(
-            host=DB_HOST, port=DB_PORT, dbname=DB_NAME, 
-            user=DB_USER, password=DB_PASSWORD)
-    except Exception as e:
-        logging.error("Database connection failed: %s", e)
-        raise
-
 def get_date_days_ago(days: str) -> str:
-    """Calculates the date 'days' number of days ago from today."""
+    """
+    Computes a date that is a given number of days in the past from the current date.
+
+    :param days: A string representing the number of days.
+    :return: A string representing the date in 'YYYY-MM-DD' format.
+    :raises ValueError: If the input is not a valid number of days.
+    """
     try:
         days_ago = int(days)
         target_date = datetime.datetime.now() - datetime.timedelta(days=days_ago)
         return target_date.strftime('%Y-%m-%d')
     except ValueError:
-        logging.error("Invalid input for days: %s", days)
+        sub_function_name = "get_date_days_ago()"
+        logging.error("[%s - %s]: Invalid input for days", FUNCTION_NAME, sub_function_name)
         raise
     
     
 def build_query(event: Dict[str, Any]) -> (str, List[Any]):
-    """Builds the SQL query based on the provided parameters in the event."""
+    """
+    Builds an SQL query for fetching job data based on the parameters provided in the event.
+
+    :param event: A dictionary containing parameters for the query.
+    :return: A tuple containing the SQL query string and a list of values for the query parameters.
+    """
     base_query = "SELECT id, title, city, location, company, job_type, date_posted, job_url FROM jobs"
     conditions = []
     values = []
@@ -93,18 +81,32 @@ def build_query(event: Dict[str, Any]) -> (str, List[Any]):
     return query, values
 
 
-def execute_query(cursor, query: str, values: List[Any]) -> List[Dict[str, Any]]:
-    """Executes the given SQL query and returns the result."""
+def execute_query(cursor: psycopg2.extensions.cursor, query: str, values: List[Any]) -> List[Dict[str, Any]]:
+    """
+    Executes a SQL query using the provided cursor, query string, and values.
+
+    :param cursor: A database cursor to execute the query.
+    :param query: A string representing the SQL query to be executed.
+    :param values: A list of values for the query parameters.
+    :return: A list of dictionaries, each representing a row in the result set.
+    """
     try:
         cursor.execute(query, values)
         return cursor.fetchall()
     except Exception as e:
-        logging.error("Query execution failed: %s", e)
+        sub_function_name = "execute_query()"
+        logging.error("[%s - %s]: Database connection failed. Exception: %s", FUNCTION_NAME, sub_function_name, e)
         raise
 
 def lambda_handler(event, context):
-    """Entry point for the AWS Lambda function."""
-    with get_db_connection() as conn:
+    """
+    AWS Lambda handler function to fetch filtered job data based on the event.
+
+    :param event: The event triggering this Lambda function.
+    :param context: Runtime information provided by AWS Lambda.
+    :return: A dictionary with statusCode, body (JSON string), and number of records.
+    """
+    with get_db_connection(**DB_CONFIG) as conn:
         with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cursor:
             query, values = build_query(event)
             results = execute_query(cursor, query, values)
@@ -118,11 +120,18 @@ def lambda_handler(event, context):
 
 # Local development testing...
 if __name__ == "__main__":
-    # for local development, run the lambda function
+    import sys
+    # Import 
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    sys.path.insert(0, project_root)
+    from lambdas.layers.dbConnectionLayer.python.DbConnection import get_db_connection
+    from lambdas.layers.provinceMappingLayer.python.ProvinceMapping import PROVINCE_MAPPING
+    from lambdas.config.DbConfig import DB_CONFIG 
+    
     logging.basicConfig(level=logging.INFO)
     
     # Mock event for filtering data, all empty = get all jobs
-    mock_event = {'location': 'BC', 'postedWithin': '3', 'title': 'software-engineer'}
+    mock_event = {'location': 'BC', 'postedWithin': '10', 'title': 'software-engineer'}
     result = lambda_handler(mock_event, None)
 
     # Extracting the statusCode, body, and records_fetched from the result
