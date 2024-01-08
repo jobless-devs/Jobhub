@@ -48,6 +48,6 @@ In-depth documentation 📚 will accompany the project, ensuring that even those
 
 For a sneak peek into our architectural vision, check out the preliminary diagram below. Or [here](https://miro.com/app/board/uXjVNX2YT9k=/?share_link_id=732210735449). 
 
-<img width="555" alt="JobHub-Architecture-Diagram" src="https://github.com/jobless-devs/Jobhub/assets/99154887/9a858acd-0d3c-4f0a-a187-31d400eafdc3">
+![image](https://github.com/jobless-devs/Jobhub/assets/99154887/49fc7c8f-3ee5-426e-9223-4a33a9baa906)
 
 # 🌟 Next Step 👉🚀 [docs/README.md](docs/README.md) 
