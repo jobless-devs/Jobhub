@@ -77,7 +77,10 @@ def build_query(event: Dict[str, Any]) -> (str, List[Any]):
         conditions.append(title_condition)
         values.append(f"%{title_param}%")
 
-    query = f"{base_query} WHERE {' AND '.join(conditions)} ORDER BY date_posted DESC" if conditions else base_query
+    if conditions:
+        query = f"{base_query} WHERE {' AND '.join(conditions)} ORDER BY date_posted DESC"
+    else:
+        query = f"{base_query} ORDER BY date_posted DESC"
     return query, values
 
 
@@ -126,11 +129,13 @@ if __name__ == "__main__":
     sys.path.insert(0, project_root)
     from lambdas.layers.dbConnectionLayer.python.DbConnection import get_db_connection
     from lambdas.layers.provinceMappingLayer.python.ProvinceMapping import PROVINCE_MAPPING
-    from lambdas.config.DbConfig import DB_CONFIG 
+    from lambdas.layers.dbConfigLayer.python.DbConfig import DB_CONFIG 
     
     logging.basicConfig(level=logging.INFO)
     
     # Mock event for filtering data, all empty = get all jobs
+    # Mock event for all jobs:
+    # mock_event = {'location': '', 'postedWithin': '', 'title': ''}
     mock_event = {'location': 'BC', 'postedWithin': '10', 'title': 'software-engineer'}
     result = lambda_handler(mock_event, None)
 

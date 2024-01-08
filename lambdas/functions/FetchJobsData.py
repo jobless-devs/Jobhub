@@ -56,7 +56,7 @@ if __name__ == "__main__":
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     sys.path.insert(0, project_root)
     from lambdas.layers.dbConnectionLayer.python.DbConnection import get_db_connection
-    from lambdas.config.DbConfig import DB_CONFIG
+    from lambdas.layers.dbConfigLayer.python.DbConfig import DB_CONFIG
     
     logging.basicConfig(level=logging.INFO)
     result = lambda_handler(None, None)
