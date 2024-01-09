@@ -24,9 +24,9 @@
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
 # License for more details.
 
+from psycopg2.compat import text_type
 from psycopg2.extensions import (
     new_type, new_array_type, register_type, register_adapter, QuotedString)
-from psycopg2.compat import text_type
 
 # The module is imported on register_ipaddress
 ipaddress = None

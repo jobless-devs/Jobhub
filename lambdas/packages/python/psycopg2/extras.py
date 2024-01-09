@@ -26,40 +26,33 @@ and classes until a better place in the distribution is found.
 # FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
 # License for more details.
 
-import os as _os
-import time as _time
-import re as _re
-from collections import namedtuple, OrderedDict
-
 import logging as _logging
+import os as _os
+import re as _re
+import time as _time
+from collections import namedtuple, OrderedDict
 
 import psycopg2
 from psycopg2 import extensions as _ext
-from .extensions import cursor as _cursor
-from .extensions import connection as _connection
-from .extensions import adapt as _A, quote_ident
-from .compat import PY2, PY3, lru_cache
-
-from psycopg2._psycopg import (                             # noqa
+# Expose ipaddress-related objects
+from psycopg2._ipaddress import register_ipaddress  # noqa
+# expose the json adaptation stuff into the module
+from psycopg2._json import (  # noqa
+    json, Json, register_json, register_default_json, register_default_jsonb)
+from psycopg2._psycopg import (  # noqa
     REPLICATION_PHYSICAL, REPLICATION_LOGICAL,
     ReplicationConnection as _replicationConnection,
     ReplicationCursor as _replicationCursor,
     ReplicationMessage)
-
-
-# expose the json adaptation stuff into the module
-from psycopg2._json import (                                # noqa
-    json, Json, register_json, register_default_json, register_default_jsonb)
-
-
 # Expose range-related objects
-from psycopg2._range import (                               # noqa
+from psycopg2._range import (  # noqa
     Range, NumericRange, DateRange, DateTimeRange, DateTimeTZRange,
     register_range, RangeAdapter, RangeCaster)
 
-
-# Expose ipaddress-related objects
-from psycopg2._ipaddress import register_ipaddress          # noqa
+from .compat import PY2, PY3, lru_cache
+from .extensions import adapt as _A, quote_ident
+from .extensions import connection as _connection
+from .extensions import cursor as _cursor
 
 
 class DictCursorBase(_cursor):

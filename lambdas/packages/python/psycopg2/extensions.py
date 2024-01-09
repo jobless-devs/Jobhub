@@ -35,7 +35,7 @@ This module holds all the extensions to the DBAPI-2.0 provided by psycopg.
 
 import re as _re
 
-from psycopg2._psycopg import (                             # noqa
+from psycopg2._psycopg import (  # noqa
     BINARYARRAY, BOOLEAN, BOOLEANARRAY, BYTES, BYTESARRAY, DATE, DATEARRAY,
     DATETIMEARRAY, DECIMAL, DECIMALARRAY, FLOAT, FLOATARRAY, INTEGER,
     INTEGERARRAY, INTERVAL, INTERVALARRAY, LONGINTEGER, LONGINTEGERARRAY,

@@ -34,7 +34,6 @@ from psycopg2._psycopg import ISQLQuote, QuotedString
 from psycopg2._psycopg import new_type, new_array_type, register_type
 from psycopg2.compat import PY2
 
-
 # oids from PostgreSQL 9.2
 JSON_OID = 114
 JSONARRAY_OID = 199

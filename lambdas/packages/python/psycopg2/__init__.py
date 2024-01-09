@@ -48,7 +48,9 @@ Homepage: https://psycopg.org/
 
 # Import the DBAPI-2.0 stuff into top-level module.
 
-from psycopg2._psycopg import (                     # noqa
+from psycopg2 import extensions as _ext
+from psycopg2 import tz  # noqa
+from psycopg2._psycopg import (  # noqa
     BINARY, NUMBER, STRING, DATETIME, ROWID,
 
     Binary, Date, Time, Timestamp,
@@ -61,12 +63,7 @@ from psycopg2._psycopg import (                     # noqa
     __version__, __libpq_version__,
 )
 
-from psycopg2 import tz                             # noqa
-
-
 # Register default adapters.
-
-from psycopg2 import extensions as _ext
 _ext.register_adapter(tuple, _ext.SQL_IN)
 _ext.register_adapter(type(None), _ext.NoneAdapter)
 

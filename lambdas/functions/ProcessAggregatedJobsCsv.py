@@ -1,5 +1,7 @@
-import boto3
 import urllib.parse
+
+import boto3
+
 
 def lambda_handler(event, context):
     # Initialize Boto3 client for Glue

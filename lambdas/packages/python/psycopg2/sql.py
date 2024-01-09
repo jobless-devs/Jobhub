@@ -29,7 +29,6 @@ import string
 from psycopg2 import extensions as ext
 from psycopg2.compat import PY3, string_types
 
-
 _formatter = string.Formatter()
 
 

@@ -1,10 +1,10 @@
-import psycopg2
-import psycopg2.extras
+import datetime
 import json
-import os
 import logging
 from typing import Dict, List, Any
-import datetime
+
+import psycopg2
+import psycopg2.extras
 
 try:
     # for local development, load environment variables from .env file
@@ -18,6 +18,7 @@ except ImportError:
 
 FUNCTION_NAME = 'FetchJobsDataFiltered' # For error logging purpose
 
+
 def standardize_location(location: str) -> str:
     """
     Standardizes a location string by converting it to lowercase and removing spaces.
@@ -26,6 +27,7 @@ def standardize_location(location: str) -> str:
     :return: A standardized location string.
     """
     return location.lower().replace(" ", "")
+
 
 def get_date_days_ago(days: str) -> str:
     """
@@ -66,7 +68,8 @@ def build_query(event: Dict[str, Any]) -> (str, List[Any]):
     if event.get('location'):
         location_param = standardize_location(event['location'])
         province_full = PROVINCE_MAPPING.get(location_param, location_param)
-        location_condition = "(REPLACE(LOWER(location), ' ', '') ILIKE %s OR REPLACE(LOWER(location), ' ', '') ILIKE %s)"
+        location_condition = ("(REPLACE(LOWER(location), ' ', '') ILIKE %s OR REPLACE(LOWER(location), ' ', '') ILIKE "
+                              "%s)")
         conditions.append(location_condition)
         values.extend([f"%{location_param}%", f"%{province_full}%"])
 
@@ -101,6 +104,7 @@ def execute_query(cursor: psycopg2.extensions.cursor, query: str, values: List[A
         logging.error("[%s - %s]: Database connection failed. Exception: %s", FUNCTION_NAME, sub_function_name, e)
         raise
 
+
 def lambda_handler(event, context):
     """
     AWS Lambda handler function to fetch filtered job data based on the event.
@@ -121,10 +125,11 @@ def lambda_handler(event, context):
         'records_fetched': len(results)
     }
 
-# Local development testing...
+# Local development 
 if __name__ == "__main__":
+    # Import absolute path
     import sys
-    # Import 
+    import os
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     sys.path.insert(0, project_root)
     from lambdas.layers.dbConnectionLayer.python.DbConnection import get_db_connection
@@ -132,9 +137,8 @@ if __name__ == "__main__":
     from lambdas.layers.dbConfigLayer.python.DbConfig import DB_CONFIG 
     
     logging.basicConfig(level=logging.INFO)
-    
-    # Mock event for filtering data, all empty = get all jobs
-    # Mock event for all jobs:
+
+    # Mock event for getting all jobs:
     # mock_event = {'location': '', 'postedWithin': '', 'title': ''}
     mock_event = {'location': 'BC', 'postedWithin': '10', 'title': 'software-engineer'}
     result = lambda_handler(mock_event, None)

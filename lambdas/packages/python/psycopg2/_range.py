@@ -28,9 +28,9 @@
 import re
 
 from psycopg2._psycopg import ProgrammingError, InterfaceError
+from psycopg2.compat import string_types
 from psycopg2.extensions import ISQLQuote, adapt, register_adapter
 from psycopg2.extensions import new_type, new_array_type, register_type
-from psycopg2.compat import string_types
 
 
 class Range(object):

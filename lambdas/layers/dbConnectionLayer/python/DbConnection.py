@@ -1,8 +1,10 @@
+import logging
+import os
+from typing import Optional
+
 import psycopg2
 import psycopg2.extras
-import logging
-from typing import Optional
-import os
+
 
 def get_db_connection(**kwargs: Optional[str]) -> psycopg2.extensions.connection:
     """

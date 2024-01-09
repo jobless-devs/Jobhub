@@ -1,8 +1,9 @@
-import psycopg2
 import json
-import os
 import logging
 from typing import List, Dict, Any, Optional
+
+import psycopg2
+
 try:
     # for local development, load environment variables from .env file
     import dotenv
@@ -50,6 +51,7 @@ def lambda_handler(event: Optional[Dict[str, Any]], context: Optional[Any]) -> D
     }
     
 if __name__ == "__main__":
+    import os
     import sys
     
     # Import 
