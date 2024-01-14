@@ -166,3 +166,4 @@ database/temp/
 .docker-sync
 .DS_Store
 
+*.zip
