@@ -13,7 +13,7 @@ except ImportError:
     from DbConnection import get_db_connection # dbConnectionLayer
     from DbConfig import DB_CONFIG # dbConfig file
 
-FUNCTION_NAME = "FetchJobsData" 
+FUNCTION_NAME = "FetchJobsDataLimited" 
 
 def fetch_data_limited(cursor: psycopg2.extensions.cursor, limit: int = 25) -> List[Dict[str, Any]]:
     """
