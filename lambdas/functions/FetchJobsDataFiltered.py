@@ -16,6 +16,15 @@ except ImportError:
     from ProvinceMapping import PROVINCE_MAPPING # provinceMappingLayer
     from DbConfig import DB_CONFIG # dbConfig file
     import logger # loggerLayer
+else:
+    import sys
+    import os
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    sys.path.insert(0, project_root)
+    from lambdas.layers.dbConnectionLayer.python.DbConnection import get_db_connection
+    from lambdas.layers.provinceMappingLayer.python.ProvinceMapping import PROVINCE_MAPPING
+    from lambdas.layers.dbConfigLayer.python.DbConfig import DB_CONFIG 
+    import lambdas.layers.loggerLayer.python.logger as logger
 
 FUNCTION_NAME = 'FetchJobsDataFiltered' # For error logging purpose
 
@@ -133,19 +142,9 @@ def lambda_handler(event, context):
 
 # Local development 
 if __name__ == "__main__":
-    # Import absolute path
-    import sys
-    import os
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-    sys.path.insert(0, project_root)
-    from lambdas.layers.dbConnectionLayer.python.DbConnection import get_db_connection
-    from lambdas.layers.provinceMappingLayer.python.ProvinceMapping import PROVINCE_MAPPING
-    from lambdas.layers.dbConfigLayer.python.DbConfig import DB_CONFIG 
-    import lambdas.layers.loggerLayer.python.logger as logger
-
     # Mock event for getting all jobs:
     # mock_event = {'location': '', 'postedWithin': '', 'title': ''}
-    mock_event = {'location': 'BC', 'postedWithin': 'a', 'title': 'software-engineer'}
+    mock_event = {'location': '', 'postedWithin': '25', 'title': ''}
     result = lambda_handler(mock_event, None)
 
     status_code = result['statusCode']

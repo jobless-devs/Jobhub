@@ -1,7 +1,6 @@
 import datetime
 import json
 from typing import Dict, Any, Optional
-
 import psycopg2
 import psycopg2.extras
 
@@ -9,12 +8,21 @@ import psycopg2.extras
 try:
     import dotenv
     dotenv.load_dotenv()
-    IS_LOCAL = True
 except ImportError:
     from DbConnection import get_db_connection  # Database Connection Layer
     from DbConfig import DB_CONFIG  # Database Configuration Layer
     from logger import error, success  # Logger Layer
-    IS_LOCAL = False
+else:
+    # This else block runs if no exception was raised in the try block
+    # Import absolute path for local development
+    import sys
+    import os
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    sys.path.insert(0, project_root)
+    from lambdas.layers.dbConnectionLayer.python.DbConnection import get_db_connection
+    from lambdas.layers.dbConfigLayer.python.DbConfig import DB_CONFIG
+    from lambdas.layers.loggerLayer.python.logger import error, success
+    
 
 FUNCTION_NAME = 'CleanOldJobPostings'
 
@@ -32,7 +40,7 @@ def get_date_days_ago(days: str) -> str:
         error(FUNCTION_NAME, "get_date_days_ago", e)
         raise
 
-def build_delete_query(days_ago: str) -> str:
+def build_delete_query() -> str:
     """
     :param days_ago: The age threshold in days for deleting job postings.
     :return: An SQL delete query.
@@ -62,8 +70,9 @@ def count_job_postings(cursor: psycopg2.extensions.cursor) -> int:
     :param cursor: A database cursor.
     :return: The count of remaining records.
     """
-    cursor.execute("SELECT COUNT(*) FROM jobs")
-    return cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM jobs;")
+    result = cursor.fetchone()
+    return result[0]
 
 def lambda_handler(event: Optional[Dict[str, Any]], context: Optional[Any]) -> Dict[str, Any]:
     """
@@ -77,7 +86,7 @@ def lambda_handler(event: Optional[Dict[str, Any]], context: Optional[Any]) -> D
     try:
         with get_db_connection(**DB_CONFIG) as conn:
             with conn.cursor() as cursor:
-                delete_query = build_delete_query(days_ago=days_ago)
+                delete_query = build_delete_query()
                 deleted_count = execute_delete_query(cursor, delete_query, days_ago)
 
                 remaining_records = count_job_postings(cursor)
@@ -102,41 +111,38 @@ if __name__ == "__main__":
     WARNING: Ensure that this script is run against a Development database.
     The re-insertion logic is meant for testing purposes only and should not be used on a production database.
     """
-
-    # Import absolute path for local development
-    import sys
-    import os
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-    sys.path.insert(0, project_root)
-    from lambdas.layers.dbConnectionLayer.python.DbConnection import get_db_connection
-    from lambdas.layers.dbConfigLayer.python.DbConfig import DB_CONFIG
-    from lambdas.layers.loggerLayer.python.logger import error, success
-    
     # Define a mock event for testing
-    mock_event = {'daysAgo': '30'}
-    days_ago = mock_event.get('daysAgo', '30')
+    mock_event = {'daysAgo': '25'}
+    days_ago = mock_event['daysAgo']
     target_date = get_date_days_ago(days_ago)
 
     # Connect to the database and fetch records that will be deleted
     with get_db_connection(**DB_CONFIG) as conn:
-        with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cursor:
-            # Fetch records to be deleted
+        with conn.cursor() as cursor:
+            print(f"Initial records: {count_job_postings(cursor=cursor)}")
+            
             cursor.execute("SELECT * FROM jobs WHERE date_posted < %s", [target_date])
             records_to_delete = cursor.fetchall()
 
             # Execute lambda_handler to delete the records
             result = lambda_handler(mock_event, None)
             print(f"Lambda Function Response:\n{result}")
-
             # Re-insert the deleted records
+            print(f"Re-inserting deleted records...")
             if records_to_delete:
-                reinsert_query = "INSERT INTO jobs (id, title, city, location, company, job_type, date_posted, job_url) VALUES %s"
-                psycopg2.extras.execute_values(
-                    cursor, reinsert_query, 
-                    [(record['id'], record['title'], record['city'], record['location'], record['company'], record['job_type'], record['date_posted'], record['job_url']) for record in records_to_delete]
-                )
+                reinsert_query = """
+                                    INSERT INTO jobs (
+                                        id, job_url, site, title, company, company_url, location, job_type, 
+                                        date_posted, date_fetched, interval, min_amount, max_amount, currency, 
+                                        is_remote, num_urgent_words, benefits, emails, description, city
+                                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                """
+                cursor.executemany(reinsert_query, records_to_delete)
                 conn.commit()
                 print(f"Re-inserted {len(records_to_delete)} records back into the database.")
+            else:
+                print(f"No deleted records found.")
+
 
             total_records = count_job_postings(cursor=cursor)
             print(f"Total records in the database after re-insertion: {total_records}")

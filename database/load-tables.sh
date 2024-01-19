@@ -5,8 +5,6 @@
 # container is already running 
 
 # Load the environment variables from the .env file
-# The script checks for the presence of a .env file in the same directory. 
-# This file should contain necessary environment variables like DB_USER, DB_NAME, etc.
 if [ -f .env ]; then
     export $(cat .env | xargs)
 else
@@ -15,16 +13,17 @@ else
 fi
 
 # Configuration
-CONTAINER_NAME="jobhub-postgres" 
-SQL_FILE="load_tables.sh" 
+CONTAINER_NAME="jobhub-postgres"
+SQL_FILE="create_tables.sql"  # Replace with the actual SQL file name
 
 # Step 1: Copy the SQL file to the container
-# This step copies the SQL file from the host to the Docker container.
 echo "Copying SQL file to the container..."
 docker cp $SQL_FILE $CONTAINER_NAME:/$SQL_FILE
 
 # Step 2: Execute the SQL file
+# Using 'postgres' as the Linux user in the container,
+# and '$DB_USER' as the PostgreSQL user
 echo "Executing SQL file..."
-docker exec -u $DB_USER $CONTAINER_NAME psql -d $DB_NAME -f /$SQL_FILE
+docker exec -u postgres $CONTAINER_NAME psql -U $DB_USER -d $DB_NAME -f /$SQL_FILE
 
 echo "SQL file executed successfully."
