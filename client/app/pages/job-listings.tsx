@@ -22,6 +22,7 @@ type JobListingsProps = {
 
 const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
   const [jobs, setJobs] = useState<Job[]>(propJobs || []);
+  const [dateFilter, setDateFilter] = useState('');
 
   useEffect(() => {
     // Fetch jobs only if propJobs is not provided
@@ -43,6 +44,22 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
       fetchJobs();
     }
   }, [propJobs]);
+  
+  const filteredJobs = jobs.filter((job) => {
+    if (!dateFilter) return true; // If no filter is selected, show all jobs.
+
+    const jobDate = new Date(job.date);
+    const now = new Date();
+    const daysAgo = parseInt(dateFilter, 10);
+    const comparisonDate = new Date();
+    comparisonDate.setDate(now.getDate() - daysAgo);
+    
+    return jobDate > comparisonDate;
+  });
+  
+  const handleDateFilterChange = (event) => {
+    setDateFilter(event.target.value);
+  };
 
   const [visibleJobsCount, setVisibleJobsCount] = useState(10); // Start with 10 jobs
 
@@ -50,7 +67,7 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
     setVisibleJobsCount(currentCount => currentCount + 10); // Load 10 more jobs
   };
 
-  const jobsToShow = jobs.slice(0, visibleJobsCount); // Show only a subset of jobs
+  const jobsToShow = filteredJobs.slice(0, visibleJobsCount); // Show only a subset of jobs
   
   const audioRef = useRef<HTMLAudioElement>(null);  // Create a reference to the audio element
 
@@ -77,7 +94,6 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
   
     return `${year} ${month} ${day}`;
   };
-
 
   return (
     <div className="container mx-auto">
@@ -114,11 +130,11 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
         </form>
         <div className="flex md:w-[50%] mt-3 md:mt-0 w-full space-x-2 items-center justify-end text-custom-white px-2">
           {/* Filter buttons or dropdowns */}
-          <select className="p-2  border bg-custom-black rounded-sm w-full">
-          <option selected >Date</option>
-            <option  value="">&#60; 3 Days</option>
-            <option value="">&#60; 10 Days</option>
-            <option value="">&#60; 20 Days</option>
+          <select onChange={handleDateFilterChange} className="p-2  border bg-custom-black rounded-sm w-full">
+          <option selected>Date</option>
+            <option  value="3">&#60; 3 Days</option>
+            <option value="10">&#60; 10 Days</option>
+            <option value="20">&#60; 20 Days</option>
           </select>
           <select className="p-2  border bg-custom-black rounded-sm w-full">
             <option selected >Location</option>
@@ -157,7 +173,7 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
           ))}
         </div>
         <div className="flex justify-center items-center mb-2">
-        {visibleJobsCount < jobs.length && (
+        {visibleJobsCount < filteredJobs.length && (
           <button onClick={loadMoreJobs} className="bg-custom-black hover:bg-custom-orange text-center text-white p-2 rounded my-2 justify-center mx-auto">
             Load More
           </button>
