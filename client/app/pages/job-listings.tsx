@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import React, { useEffect, useState, useRef} from 'react';
-import axios from 'axios'; 
+import React, { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
 
 // Define Type for Job Card
 type Job = {
@@ -141,7 +141,7 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
         <div className="cursor-pointer grid grid-cols-1 md:grid-cols-2 gap-4 text-custom-black border mb-6 px-2 md:px-0">
         <audio ref={audioRef} src="/Jobhub Click.mp3" preload="auto"></audio>
         {jobsToShow.map(job => (
-          <Link onClick={(event) => playAudioThenNavigate(job.link, event)} href={job.link} key={job.id} className="block border-2 border-gray-300 rounded-lg p-4 hover:border-custom-orange transition w-full">
+          <Link href={job.link} key={job.id} className="block border-2 border-gray-300 rounded-lg p-4 hover:border-custom-orange transition w-full">
             <div className="grid grid-cols-5">
               <div className="col-span-1 text-center">
                 <p className="font-bold text-xl text-custom-orange">{formatDate(job.date).split(" ")[1]}</p>
