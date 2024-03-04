@@ -57,7 +57,7 @@ const JobListings = ({ jobs: propJobs, onBack }: JobListingsProps) => {
     return jobDate > comparisonDate;
   });
   
-  const handleDateFilterChange = (event) => {
+  const handleDateFilterChange = (event : any) => {
     setDateFilter(event.target.value);
   };
 
