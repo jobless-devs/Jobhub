@@ -1,6 +1,5 @@
 <img width="1111" alt="SCR-20231231-cxlo" src="https://github.com/jobless-devs/Jobhub/assets/99154887/b754b7ba-36ef-44f3-a14f-5c80461d00b7">
 
-# 👉 The 🚫ther “hub” you'll visit daily! 🙊🌟
 
 > Quick link to the latest update: [https://docs.google.com/document/d/1iAg287oxtnhR0tiD2PpY4js-MbZfZNoQ6-4iXsIimcE/edit](https://docs.google.com/document/d/1iAg287oxtnhR0tiD2PpY4js-MbZfZNoQ6-4iXsIimcE/edit) 
 
